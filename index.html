@@ -24,7 +24,7 @@
 html,body{margin:0;padding:0}
 body{
   background:var(--bg); color:var(--ink); font-family:var(--jp);
-  font-size:15px; line-height:1.5;
+  font-size:16px; line-height:1.5;
   padding:0 0 env(safe-area-inset-bottom);
   -webkit-font-smoothing:antialiased;
 }
@@ -38,16 +38,28 @@ header{
   backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft);
   padding:calc(10px + env(safe-area-inset-top)) 0 0;
 }
-.hrow{display:flex;align-items:baseline;justify-content:space-between;padding:0 14px 8px;gap:10px}
-h1{font-size:16px;font-weight:700;margin:0;letter-spacing:.04em}
-#stamp{font-size:10.5px;color:var(--ink-3);white-space:nowrap}
+.hrow{display:flex;align-items:center;justify-content:space-between;padding:0 12px 8px;gap:10px}
+h1{font-size:18px;font-weight:700;margin:0;letter-spacing:.04em;flex:0 0 auto}
+.hmeta{display:flex;align-items:center;gap:8px;min-width:0}
+#stamp{font-size:11.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 再読込ボタン */
+#reload{
+  flex:0 0 auto;width:34px;height:34px;border-radius:9px;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0
+}
+#reload:hover{color:var(--ink);border-color:var(--ink-3)}
+#reload:active{transform:scale(.92)}
+#reload svg{width:17px;height:17px}
+#reload.spin svg{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* 指数ティッカー */
-#idx{display:flex;gap:7px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}
+#idx{display:flex;gap:7px;overflow-x:auto;padding:0 12px 10px;scrollbar-width:none}
 #idx::-webkit-scrollbar{display:none}
 .ipill{
   flex:0 0 auto;background:var(--surface);border:1px solid var(--line-soft);
-  border-radius:9px;padding:5px 10px;min-width:96px
+  border-radius:9px;padding:6px 11px;min-width:104px
 }
 /* ドル円など pin:true の指数は横スクロールしても左端に残る */
 .ipill.pin{
@@ -55,98 +67,126 @@ h1{font-size:16px;font-weight:700;margin:0;letter-spacing:.04em}
   border-color:var(--line);background:var(--surface-2);
   box-shadow:8px 0 10px -8px rgba(10,14,21,.95)
 }
-.ipill b{display:block;font-size:10px;font-weight:600;color:var(--ink-2);letter-spacing:.03em}
-.ipill span{font-size:13px;font-weight:700}
-.ipill i{font-style:normal;font-size:10.5px;margin-left:5px}
+.ipill b{display:block;font-size:11px;font-weight:600;color:var(--ink-2);letter-spacing:.03em;margin-bottom:1px}
+.ipill span{font-size:15px;font-weight:700}
+.ipill i{font-style:normal;font-size:11.5px;margin-left:6px;font-weight:600}
 
 /* タブ */
-#tabs{display:flex;gap:6px;padding:0 14px 10px}
+#tabs{display:flex;gap:6px;padding:0 12px 10px}
 .tab{
   flex:1;background:transparent;border:1px solid var(--line);color:var(--ink-2);
-  font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 0;
+  font-family:inherit;font-size:14px;font-weight:600;padding:9px 0;
   border-radius:9px;cursor:pointer;transition:background .15s,color .15s
 }
 .tab[aria-selected="true"]{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
 
+/* 期間トグル（3M / 1M / 2W） */
+#range{display:flex;gap:0;padding:0 12px 10px}
+.rseg{
+  display:inline-flex;background:var(--surface);border:1px solid var(--line);
+  border-radius:9px;overflow:hidden;margin:0 auto
+}
+.rbtn{
+  background:transparent;border:0;border-right:1px solid var(--line);
+  color:var(--ink-3);font-family:inherit;font-size:13px;font-weight:700;
+  padding:7px 20px;cursor:pointer;transition:background .15s,color .15s;letter-spacing:.02em
+}
+.rbtn:last-child{border-right:0}
+.rbtn[aria-selected="true"]{background:var(--surface-2);color:var(--ink)}
+.rsub{font-size:10px;color:var(--ink-3);font-weight:500;margin-left:5px}
+.rbtn[aria-selected="true"] .rsub{color:var(--ink-2)}
+
 /* ---------- カード ---------- */
-main{padding:12px 14px 40px;display:grid;gap:10px;max-width:760px;margin:0 auto}
+main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
 .card{
   background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);
-  padding:12px 13px;display:grid;gap:9px
+  padding:12px 13px;display:grid;gap:10px
 }
 
 /* 行1: 銘柄と株価 */
 .r1{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 .who{min-width:0}
-.code{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.06em}
-.name{font-size:15px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.code{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.06em}
+.etftag{
+  display:inline-block;margin-left:7px;padding:1px 6px;border-radius:5px;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+  font-family:var(--jp);font-size:10px;font-weight:700;letter-spacing:.04em;vertical-align:1px
+}
+.name{font-size:17px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .px{text-align:right;white-space:nowrap}
-.px .p{font-size:20px;font-weight:700}
-.px .d{font-size:12px;font-weight:600;margin-top:1px}
+.px .p{font-size:23px;font-weight:700}
+.px .d{font-size:13.5px;font-weight:600;margin-top:2px}
 
-/* 行2: 6ヶ月チャート + 期間騰落 */
+/* 行2: チャート + 期間騰落 */
 .r2{display:flex;align-items:center;gap:11px}
-.spark{flex:1;min-width:0;height:46px;display:block}
-.pers{display:grid;gap:2px;text-align:right;flex:0 0 auto}
-.pers div{font-size:10.5px;white-space:nowrap}
-.pers em{font-style:normal;color:var(--ink-3);margin-right:5px;font-size:9.5px;letter-spacing:.05em}
+.chartbox{flex:1;min-width:0}
+.spark{width:100%;height:60px;display:block}
+.xaxis{position:relative;height:13px;margin-top:1px}
+.xaxis span{
+  position:absolute;transform:translateX(-50%);font-family:var(--mono);
+  font-size:9px;color:var(--ink-3);white-space:nowrap
+}
+.xaxis span:first-child{transform:translateX(0)}
+.xaxis span:last-child{transform:translateX(-100%)}
+.pers{display:grid;gap:3px;text-align:right;flex:0 0 auto}
+.pers div{font-size:12px;white-space:nowrap;font-weight:600}
+.pers em{font-style:normal;color:var(--ink-3);margin-right:6px;font-size:10.5px;letter-spacing:.05em;font-weight:600}
 
 /* 行3: 直近5営業日ストリップ */
-.r3{display:flex;align-items:stretch;gap:4px}
+.r3{display:flex;align-items:stretch;gap:5px}
 .d5{
-  flex:1;background:var(--surface-2);border-radius:6px;padding:4px 2px 3px;
+  flex:1;background:var(--surface-2);border-radius:6px;padding:5px 2px 4px;
   text-align:center;position:relative;overflow:hidden
 }
 .d5 .bar{position:absolute;left:0;right:0;opacity:.85}
-.d5 .v{position:relative;font-family:var(--mono);font-size:10.5px;font-weight:600}
-.d5 .dt{position:relative;font-family:var(--mono);font-size:8.5px;color:var(--ink-3);display:block}
+.d5 .v{position:relative;font-family:var(--mono);font-size:12.5px;font-weight:700}
+.d5 .dt{position:relative;font-family:var(--mono);font-size:9.5px;color:var(--ink-3);display:block;margin-bottom:1px}
 
 /* 行4: 指標 */
-.r4{display:flex;gap:0;border-top:1px solid var(--line-soft);padding-top:8px}
+.r4{display:flex;gap:0;border-top:1px solid var(--line-soft);padding-top:9px}
 .mt{flex:1;text-align:center;border-right:1px solid var(--line-soft)}
 .mt:last-child{border-right:0}
-.mt b{display:block;font-size:9.5px;letter-spacing:.1em;color:var(--ink-3);font-weight:600}
-.mt span{font-family:var(--mono);font-size:13.5px;font-weight:600}
+.mt b{display:block;font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);font-weight:600;margin-bottom:1px}
+.mt span{font-family:var(--mono);font-size:16px;font-weight:700}
 
 /* 行5: 決算・スコア・リンク */
 .r5{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;flex-wrap:wrap}
-.links{flex-wrap:wrap}
-.chips{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .chip{
-  font-size:10.5px;font-weight:600;padding:3px 7px;border-radius:6px;
+  font-size:12px;font-weight:600;padding:4px 9px;border-radius:7px;
   background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line-soft)
 }
 .chip.up{color:var(--up);border-color:rgba(255,77,94,.3);background:var(--up-dim)}
 .chip.dn{color:var(--down);border-color:rgba(76,157,255,.3);background:var(--down-dim)}
-.gauge{display:inline-flex;gap:2.5px;vertical-align:middle;margin-left:4px}
-.gauge i{width:5px;height:5px;border-radius:1.5px;background:var(--line);display:block}
+.gauge{display:inline-flex;gap:3px;vertical-align:middle;margin-left:5px}
+.gauge i{width:6px;height:6px;border-radius:1.5px;background:var(--line);display:block}
 .gauge i.on{background:var(--up)}
-.links{display:flex;gap:6px}
+.links{display:flex;gap:7px;flex-wrap:wrap}
 .links a{
-  font-size:10.5px;font-weight:600;color:var(--ink-2);text-decoration:none;
-  border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap
+  font-size:12px;font-weight:600;color:var(--ink-2);text-decoration:none;
+  border:1px solid var(--line);border-radius:7px;padding:5px 10px;white-space:nowrap
 }
 .links a:hover{color:var(--ink);border-color:var(--ink-3)}
 
 /* 展開部 */
-.more{display:none;border-top:1px solid var(--line-soft);padding-top:8px}
+.more{display:none;border-top:1px solid var(--line-soft);padding-top:9px}
 .card.open .more{display:block}
-.more table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px}
-.more th{color:var(--ink-3);font-weight:600;text-align:right;padding:3px 0;font-size:9.5px;letter-spacing:.06em}
+.more table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+.more th{color:var(--ink-3);font-weight:600;text-align:right;padding:4px 0;font-size:11px;letter-spacing:.05em}
 .more th:first-child{text-align:left}
-.more td{text-align:right;padding:3px 0;border-top:1px solid var(--line-soft)}
+.more td{text-align:right;padding:4px 0;border-top:1px solid var(--line-soft)}
 .more td:first-child{text-align:left;color:var(--ink-2)}
-.why{margin-top:7px;font-size:10.5px;color:var(--ink-3);line-height:1.6}
+.why{margin-top:8px;font-size:12px;color:var(--ink-3);line-height:1.65}
 .toggle{
   background:none;border:1px dashed var(--line);color:var(--ink-3);font-family:inherit;
-  font-size:10.5px;cursor:pointer;padding:3px 8px;font-weight:600;border-radius:6px
+  font-size:12px;cursor:pointer;padding:5px 10px;font-weight:600;border-radius:7px
 }
 .toggle:hover{color:var(--ink);border-color:var(--ink-3)}
 
 /* 状態表示 */
-.state{padding:48px 20px;text-align:center;color:var(--ink-2);font-size:13.5px;line-height:1.8}
-.state code{font-family:var(--mono);background:var(--surface);padding:2px 6px;border-radius:5px;font-size:12px}
-footer{padding:0 16px 32px;color:var(--ink-3);font-size:10.5px;line-height:1.7;text-align:center;max-width:760px;margin:0 auto}
+.state{padding:48px 20px;text-align:center;color:var(--ink-2);font-size:14.5px;line-height:1.8}
+.state code{font-family:var(--mono);background:var(--surface);padding:2px 6px;border-radius:5px;font-size:13px}
+footer{padding:0 16px 32px;color:var(--ink-3);font-size:11.5px;line-height:1.7;text-align:center;max-width:760px;margin:0 auto}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -156,10 +196,19 @@ footer{padding:0 16px 32px;color:var(--ink-3);font-size:10.5px;line-height:1.7;t
 <header>
   <div class="hrow">
     <h1>銘柄ウォッチ</h1>
-    <div id="stamp" class="num">読み込み中…</div>
+    <div class="hmeta">
+      <div id="stamp" class="num">読み込み中…</div>
+      <button id="reload" type="button" aria-label="データを再読込" title="最新のデータを再読込">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>
+        </svg>
+      </button>
+    </div>
   </div>
   <div id="idx"></div>
   <div id="tabs" role="tablist"></div>
+  <div id="range" role="tablist" aria-label="チャート期間"></div>
 </header>
 
 <main id="list"><div class="state">データを読み込んでいます…</div></main>
@@ -171,7 +220,7 @@ footer{padding:0 16px 32px;color:var(--ink-3);font-size:10.5px;line-height:1.7;t
 <script>
 "use strict";
 const $ = (s, r = document) => r.querySelector(s);
-let DATA = null, FILTER = "ALL";
+let DATA = null, FILTER = "ALL", RANGE = "1m";
 
 /* ---------- 表示ヘルパー ---------- */
 const sign = v => v == null ? "" : (v > 0 ? "+" : "");
@@ -185,18 +234,36 @@ function money(v, cur) {
 }
 const pct = v => v == null ? "—" : sign(v) + v.toFixed(2) + "%";
 
-/* 6ヶ月スパークライン。始値を基準線とし、上回る面は朱・下回る面は藍で塗る */
-function sparkline(closes) {
-  const W = 240, H = 46, P = 3;
-  if (!closes || closes.length < 2) return `<svg class="spark" viewBox="0 0 ${W} ${H}"></svg>`;
+/* 横軸ラベルの共通レンダラ。labels = [{at:0..1, text}] */
+function axis(labels) {
+  return `<div class="xaxis">${labels.map(l =>
+    `<span style="left:${(l.at * 100).toFixed(1)}%">${l.text}</span>`).join("")}</div>`;
+}
+
+/* 3M: 折れ線。色は前日比(changePct)にあわせる（矢印と一致）。横軸は月。 */
+function lineChart(series, changePct) {
+  const closes = series?.closes || [], dates = series?.dates || [];
+  const W = 300, H = 60, P = 3;
+  if (closes.length < 2) return `<svg class="spark" viewBox="0 0 ${W} ${H}"></svg>`;
   const min = Math.min(...closes), max = Math.max(...closes), rng = (max - min) || 1;
   const x = i => P + i * (W - P * 2) / (closes.length - 1);
   const y = v => P + (H - P * 2) * (1 - (v - min) / rng);
-  const base = closes[0], yBase = y(base), rising = closes[closes.length - 1] >= base;
+  const base = closes[0], yBase = y(base);
+  const rising = (changePct == null ? closes[closes.length - 1] - base : changePct) >= 0;
   const line = closes.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
   const id = "g" + Math.random().toString(36).slice(2, 8);
   const c = rising ? "255,77,94" : "76,157,255";
-  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
+  // 月の変わり目でラベル
+  const labels = [];
+  let lastMonth = "";
+  dates.forEach((d, i) => {
+    const m = d.slice(0, 7);
+    if (m !== lastMonth) {
+      labels.push({ at: i / (closes.length - 1), text: parseInt(d.slice(5, 7), 10) + "月" });
+      lastMonth = m;
+    }
+  });
+  const svg = `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-label="3ヶ月 折れ線">
     <defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="rgba(${c},.34)"/><stop offset="100%" stop-color="rgba(${c},0)"/>
     </linearGradient></defs>
@@ -206,6 +273,44 @@ function sparkline(closes) {
     <path d="${line}" fill="none" stroke="rgb(${c})" stroke-width="1.6"
           stroke-linejoin="round" stroke-linecap="round"/>
   </svg>`;
+  return `<div class="chartbox">${svg}${axis(labels)}</div>`;
+}
+
+/* 1M / 2W: ローソク足。陽線=朱・陰線=藍。横軸は日付を数本ラベル。 */
+function candleChart(bars) {
+  const W = 300, H = 60, P = 3, PAD = 2;
+  if (!bars || bars.length < 1) return `<svg class="spark" viewBox="0 0 ${W} ${H}"></svg>`;
+  const hi = Math.max(...bars.map(b => b.h)), lo = Math.min(...bars.map(b => b.l));
+  const rng = (hi - lo) || 1;
+  const y = v => P + (H - P * 2) * (1 - (v - lo) / rng);
+  const n = bars.length;
+  const slot = (W - P * 2) / n;
+  const bw = Math.max(2, Math.min(slot - PAD, 14));
+  const rects = bars.map((b, i) => {
+    const cx = P + slot * (i + 0.5);
+    const up = b.c >= b.o;
+    const col = up ? "#FF4D5E" : "#4C9DFF";
+    const yO = y(b.o), yC = y(b.c), yH = y(b.h), yL = y(b.l);
+    const top = Math.min(yO, yC), bh = Math.max(1, Math.abs(yC - yO));
+    return `<line x1="${cx.toFixed(1)}" y1="${yH.toFixed(1)}" x2="${cx.toFixed(1)}" y2="${yL.toFixed(1)}"
+              stroke="${col}" stroke-width="1"/>
+      <rect x="${(cx - bw / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}"
+              fill="${col}" rx="1"/>`;
+  }).join("");
+  // ラベルは最大4つ程度に間引く
+  const step = Math.max(1, Math.round(n / 4));
+  const labels = [];
+  for (let i = 0; i < n; i += step) labels.push({ at: (i + 0.5) / n, text: bars[i].d });
+  if (labels[labels.length - 1].at < (n - 0.5) / n - 0.05)
+    labels.push({ at: (n - 0.5) / n, text: bars[n - 1].d });
+  const svg = `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-label="ローソク足">${rects}</svg>`;
+  return `<div class="chartbox">${svg}${axis(labels)}</div>`;
+}
+
+function chartFor(s) {
+  if (RANGE === "3m") return lineChart(s.chart?.line3m, s.changePct);
+  if (RANGE === "2w") return candleChart(s.chart?.ohlc2w);
+  return candleChart(s.chart?.ohlc1m);
 }
 
 /* 直近5営業日ストリップ。中央を0%として上下に伸びる */
@@ -268,10 +373,33 @@ function card(s) {
   const links = Object.entries(s.links || {}).map(([k, u]) =>
     `<a href="${u}" target="_blank" rel="noopener">${LINK_LABEL[k] || k}</a>`).join("");
 
+  // ETF は決算・指標を持たないので、その行を省いてすっきり見せる
+  const hasFund = !!(s.valuation || s.financials || s.scoring);
+  const tag = s.group === "ETF" ? `<span class="etftag">ETF</span>` : "";
+
+  const r4 = hasFund ? `
+    <div class="r4">
+      <div class="mt"><b>PER</b><span>${v.per != null ? v.per.toFixed(1) : "—"}</span></div>
+      <div class="mt"><b>PBR</b><span>${v.pbr != null ? v.pbr.toFixed(2) : "—"}</span></div>
+      <div class="mt"><b>利回り</b><span>${v.dividendYield != null ? v.dividendYield.toFixed(2) + "%" : "—"}</span></div>
+    </div>` : "";
+
+  const r5 = `
+    <div class="r5">
+      <div class="chips">${hasFund ? streakChips(s.financials) + gauge(s.scoring) : ""}</div>
+      <div class="links">${links}${hasFund ? `<button class="toggle" aria-expanded="false">詳細</button>` : ""}</div>
+    </div>`;
+
+  const more = hasFund ? `
+    <div class="more">
+      ${finTable(s.financials, s.currency)}
+      ${s.scoring?.reasons?.length ? `<div class="why">スコア内訳: ${s.scoring.reasons.join(" / ")}</div>` : ""}
+    </div>` : "";
+
   return `<article class="card" data-group="${s.group}">
     <div class="r1">
       <div class="who">
-        <div class="code">${disp}</div>
+        <div class="code">${disp}${tag}</div>
         <div class="name">${s.name}</div>
       </div>
       <div class="px">
@@ -281,29 +409,16 @@ function card(s) {
     </div>
 
     <div class="r2">
-      ${sparkline(s.chart?.closes)}
+      ${chartFor(s)}
       <div class="pers">
         ${per({ k: "1M", v: p["1m"] })}${per({ k: "3M", v: p["3m"] })}${per({ k: "6M", v: p["6m"] })}
       </div>
     </div>
 
     <div class="r3">${strip(s.last5)}</div>
-
-    <div class="r4">
-      <div class="mt"><b>PER</b><span>${v.per != null ? v.per.toFixed(1) : "—"}</span></div>
-      <div class="mt"><b>PBR</b><span>${v.pbr != null ? v.pbr.toFixed(2) : "—"}</span></div>
-      <div class="mt"><b>利回り</b><span>${v.dividendYield != null ? v.dividendYield.toFixed(2) + "%" : "—"}</span></div>
-    </div>
-
-    <div class="r5">
-      <div class="chips">${streakChips(s.financials)}${gauge(s.scoring)}</div>
-      <div class="links">${links}<button class="toggle" aria-expanded="false">詳細</button></div>
-    </div>
-
-    <div class="more">
-      ${finTable(s.financials, s.currency)}
-      ${s.scoring?.reasons?.length ? `<div class="why">スコア内訳: ${s.scoring.reasons.join(" / ")}</div>` : ""}
-    </div>
+    ${r4}
+    ${r5}
+    ${more}
   </article>`;
 }
 
@@ -317,11 +432,12 @@ function render() {
     const c = b.closest(".card"), open = c.classList.toggle("open");
     b.setAttribute("aria-expanded", String(open));
     b.textContent = open ? "閉じる" : "詳細";
+    rememberOpen();
   }));
 }
 
 function renderChrome() {
-  $("#stamp").textContent = "更新 " + (DATA.updatedAt || "").replace("T", " ").slice(5, 16);
+  $("#stamp").textContent = "取得 " + (DATA.updatedAt || "").replace("T", " ").slice(5, 16);
 
   $("#idx").innerHTML = (DATA.indices || []).map(i => `
     <div class="ipill${i.pin ? " pin" : ""}">
@@ -331,7 +447,7 @@ function renderChrome() {
     </div>`).join("");
 
   const groups = ["ALL", ...new Set(DATA.stocks.map(s => s.group))];
-  const label = { ALL: "すべて", JP: "日本株", US: "米国株" };
+  const label = { ALL: "すべて", JP: "日本株", US: "米国株", ETF: "ETF" };
   $("#tabs").innerHTML = groups.map(g =>
     `<button class="tab" role="tab" data-g="${g}" aria-selected="${g === FILTER}">${label[g] || g}</button>`).join("");
   $("#tabs").querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
@@ -339,31 +455,72 @@ function renderChrome() {
     $("#tabs").querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", String(x === t)));
     render();
   }));
+
+  const ranges = [
+    { k: "3m", label: "3M", sub: "折れ線" },
+    { k: "1m", label: "1M", sub: "日足" },
+    { k: "2w", label: "2W", sub: "日足" },
+  ];
+  $("#range").innerHTML = `<div class="rseg">${ranges.map(r =>
+    `<button class="rbtn" role="tab" data-r="${r.k}" aria-selected="${r.k === RANGE}">${r.label}<span class="rsub">${r.sub}</span></button>`
+  ).join("")}</div>`;
+  $("#range").querySelectorAll(".rbtn").forEach(t => t.addEventListener("click", () => {
+    RANGE = t.dataset.r;
+    $("#range").querySelectorAll(".rbtn").forEach(x => x.setAttribute("aria-selected", String(x === t)));
+    render();  // チャートだけ描き直す（展開状態は保持したいので下で復元）
+    restoreOpen();
+  }));
 }
 
-async function boot() {
+// render() 後に、開いていたカードの展開状態を復元する
+let OPENED = new Set();
+function rememberOpen() {
+  OPENED = new Set([...document.querySelectorAll(".card.open")]
+    .map(c => c.querySelector(".code")?.textContent));
+}
+function restoreOpen() {
+  if (!OPENED.size) return;
+  document.querySelectorAll(".card").forEach(c => {
+    if (OPENED.has(c.querySelector(".code")?.textContent)) {
+      c.classList.add("open");
+      const b = c.querySelector(".toggle");
+      if (b) { b.setAttribute("aria-expanded", "true"); b.textContent = "閉じる"; }
+    }
+  });
+}
+
+async function boot(isManual = false) {
+  const btn = $("#reload");
+  if (isManual && btn) btn.classList.add("spin");
   try {
     const res = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
     if (!res.ok) throw new Error("HTTP " + res.status);
     DATA = await res.json();
+    rememberOpen();          // 再描画で失われる展開状態を退避
     renderChrome();
     render();
+    restoreOpen();
     if (DATA.errors?.length) {
       $("#list").insertAdjacentHTML("beforeend",
         `<div class="state" style="padding:14px">取得できなかった銘柄: ${DATA.errors.length} 件<br>
-         <span style="font-size:11px;color:var(--ink-3)">${DATA.errors.join("<br>")}</span></div>`);
+         <span style="font-size:12px;color:var(--ink-3)">${DATA.errors.join("<br>")}</span></div>`);
     }
   } catch (e) {
     $("#stamp").textContent = "未取得";
     $("#list").innerHTML = `<div class="state">
       <code>data.json</code> を読み込めませんでした。<br>
       GitHub Actions の実行が完了しているか確認してください。<br><br>
-      <span style="font-size:11.5px;color:var(--ink-3)">
+      <span style="font-size:12px;color:var(--ink-3)">
       ファイルを直接開いた場合はブラウザの制限で読み込めません。<br>
       GitHub Pages か <code>python -m http.server</code> 経由で開いてください。<br>(${e.message})</span>
     </div>`;
+  } finally {
+    // スピンは最低400ms見せてから止める（一瞬で終わると押した実感がない）
+    if (isManual && btn) setTimeout(() => btn.classList.remove("spin"), 400);
   }
 }
+
+$("#reload").addEventListener("click", () => boot(true));
 boot();
 </script>
 </body>
