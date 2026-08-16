@@ -41,7 +41,7 @@ header{
 .hrow{display:flex;align-items:center;justify-content:space-between;padding:0 12px 8px;gap:10px}
 h1{font-size:18px;font-weight:700;margin:0;letter-spacing:.04em;flex:0 0 auto}
 .hmeta{display:flex;align-items:center;gap:8px;min-width:0}
-#stamp{font-size:11.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#stamp{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* 再読込ボタン */
 #reload{
   flex:0 0 auto;width:34px;height:34px;border-radius:9px;
@@ -67,15 +67,15 @@ h1{font-size:18px;font-weight:700;margin:0;letter-spacing:.04em;flex:0 0 auto}
   border-color:var(--line);background:var(--surface-2);
   box-shadow:8px 0 10px -8px rgba(10,14,21,.95)
 }
-.ipill b{display:block;font-size:11px;font-weight:600;color:var(--ink-2);letter-spacing:.03em;margin-bottom:1px}
-.ipill span{font-size:15px;font-weight:700}
-.ipill i{font-style:normal;font-size:11.5px;margin-left:6px;font-weight:600}
+.ipill b{display:block;font-size:12.5px;font-weight:600;color:var(--ink-2);letter-spacing:.03em;margin-bottom:1px}
+.ipill span{font-size:17px;font-weight:700}
+.ipill i{font-style:normal;font-size:13px;margin-left:6px;font-weight:600}
 
 /* タブ */
 #tabs{display:flex;gap:6px;padding:0 12px 10px}
 .tab{
   flex:1;background:transparent;border:1px solid var(--line);color:var(--ink-2);
-  font-family:inherit;font-size:14px;font-weight:600;padding:9px 0;
+  font-family:inherit;font-size:15.5px;font-weight:600;padding:9px 0;
   border-radius:9px;cursor:pointer;transition:background .15s,color .15s
 }
 .tab[aria-selected="true"]{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
@@ -88,12 +88,12 @@ h1{font-size:18px;font-weight:700;margin:0;letter-spacing:.04em;flex:0 0 auto}
 }
 .rbtn{
   background:transparent;border:0;border-right:1px solid var(--line);
-  color:var(--ink-3);font-family:inherit;font-size:13px;font-weight:700;
+  color:var(--ink-3);font-family:inherit;font-size:14.5px;font-weight:700;
   padding:7px 20px;cursor:pointer;transition:background .15s,color .15s;letter-spacing:.02em
 }
 .rbtn:last-child{border-right:0}
 .rbtn[aria-selected="true"]{background:var(--surface-2);color:var(--ink)}
-.rsub{font-size:10px;color:var(--ink-3);font-weight:500;margin-left:5px}
+.rsub{font-size:11px;color:var(--ink-3);font-weight:500;margin-left:5px}
 .rbtn[aria-selected="true"] .rsub{color:var(--ink-2)}
 
 /* ---------- カード ---------- */
@@ -106,16 +106,16 @@ main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
 /* 行1: 銘柄と株価 */
 .r1{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 .who{min-width:0}
-.code{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.06em}
+.code{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
 .etftag{
   display:inline-block;margin-left:7px;padding:1px 6px;border-radius:5px;
   background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
-  font-family:var(--jp);font-size:10px;font-weight:700;letter-spacing:.04em;vertical-align:1px
+  font-family:var(--jp);font-size:11px;font-weight:700;letter-spacing:.04em;vertical-align:1px
 }
-.name{font-size:17px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.name{font-size:18.5px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .px{text-align:right;white-space:nowrap}
 .px .p{font-size:23px;font-weight:700}
-.px .d{font-size:13.5px;font-weight:600;margin-top:2px}
+.px .d{font-size:15px;font-weight:600;margin-top:2px}
 
 /* 行2: チャート + 期間騰落 */
 .r2{display:flex;align-items:center;gap:11px}
@@ -124,13 +124,13 @@ main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
 .xaxis{position:relative;height:13px;margin-top:1px}
 .xaxis span{
   position:absolute;transform:translateX(-50%);font-family:var(--mono);
-  font-size:9px;color:var(--ink-3);white-space:nowrap
+  font-size:10px;color:var(--ink-3);white-space:nowrap
 }
 .xaxis span:first-child{transform:translateX(0)}
 .xaxis span:last-child{transform:translateX(-100%)}
 .pers{display:grid;gap:3px;text-align:right;flex:0 0 auto}
-.pers div{font-size:12px;white-space:nowrap;font-weight:600}
-.pers em{font-style:normal;color:var(--ink-3);margin-right:6px;font-size:10.5px;letter-spacing:.05em;font-weight:600}
+.pers div{font-size:13.5px;white-space:nowrap;font-weight:600}
+.pers em{font-style:normal;color:var(--ink-3);margin-right:6px;font-size:11.5px;letter-spacing:.05em;font-weight:600}
 
 /* 行3: 直近5営業日ストリップ */
 .r3{display:flex;align-items:stretch;gap:5px}
@@ -139,21 +139,21 @@ main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
   text-align:center;position:relative;overflow:hidden
 }
 .d5 .bar{position:absolute;left:0;right:0;opacity:.85}
-.d5 .v{position:relative;font-family:var(--mono);font-size:12.5px;font-weight:700}
-.d5 .dt{position:relative;font-family:var(--mono);font-size:9.5px;color:var(--ink-3);display:block;margin-bottom:1px}
+.d5 .v{position:relative;font-family:var(--mono);font-size:14px;font-weight:700}
+.d5 .dt{position:relative;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);display:block;margin-bottom:1px}
 
 /* 行4: 指標 */
 .r4{display:flex;gap:0;border-top:1px solid var(--line-soft);padding-top:9px}
 .mt{flex:1;text-align:center;border-right:1px solid var(--line-soft)}
 .mt:last-child{border-right:0}
-.mt b{display:block;font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);font-weight:600;margin-bottom:1px}
-.mt span{font-family:var(--mono);font-size:16px;font-weight:700}
+.mt b{display:block;font-size:11.5px;letter-spacing:.08em;color:var(--ink-3);font-weight:600;margin-bottom:1px}
+.mt span{font-family:var(--mono);font-size:17.5px;font-weight:700}
 
 /* 行5: 決算・スコア・リンク */
 .r5{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;flex-wrap:wrap}
 .chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .chip{
-  font-size:12px;font-weight:600;padding:4px 9px;border-radius:7px;
+  font-size:13px;font-weight:600;padding:5px 10px;border-radius:7px;
   background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line-soft)
 }
 .chip.up{color:var(--up);border-color:rgba(255,77,94,.3);background:var(--up-dim)}
@@ -163,7 +163,7 @@ main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
 .gauge i.on{background:var(--up)}
 .links{display:flex;gap:7px;flex-wrap:wrap}
 .links a{
-  font-size:12px;font-weight:600;color:var(--ink-2);text-decoration:none;
+  font-size:13px;font-weight:600;color:var(--ink-2);text-decoration:none;
   border:1px solid var(--line);border-radius:7px;padding:5px 10px;white-space:nowrap
 }
 .links a:hover{color:var(--ink);border-color:var(--ink-3)}
@@ -171,15 +171,15 @@ main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
 /* 展開部 */
 .more{display:none;border-top:1px solid var(--line-soft);padding-top:9px}
 .card.open .more{display:block}
-.more table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
-.more th{color:var(--ink-3);font-weight:600;text-align:right;padding:4px 0;font-size:11px;letter-spacing:.05em}
+.more table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:14px}
+.more th{color:var(--ink-3);font-weight:600;text-align:right;padding:4px 0;font-size:12px;letter-spacing:.05em}
 .more th:first-child{text-align:left}
 .more td{text-align:right;padding:4px 0;border-top:1px solid var(--line-soft)}
 .more td:first-child{text-align:left;color:var(--ink-2)}
-.why{margin-top:8px;font-size:12px;color:var(--ink-3);line-height:1.65}
+.why{margin-top:8px;font-size:13px;color:var(--ink-3);line-height:1.65}
 .toggle{
   background:none;border:1px dashed var(--line);color:var(--ink-3);font-family:inherit;
-  font-size:12px;cursor:pointer;padding:5px 10px;font-weight:600;border-radius:7px
+  font-size:13px;cursor:pointer;padding:5px 10px;font-weight:600;border-radius:7px
 }
 .toggle:hover{color:var(--ink);border-color:var(--ink-3)}
 
@@ -354,7 +354,7 @@ function finTable(f, currency) {
   const rows = f.years.map((y, i, a) => {
     const pr = i ? a[i - 1] : null;
     const g = (cur, prev) => (cur == null || prev == null || !prev) ? "" :
-      `<span style="color:${col(cur - prev)};font-size:9.5px"> ${sign((cur / prev - 1) * 100)}${((cur / prev - 1) * 100).toFixed(0)}%</span>`;
+      `<span style="color:${col(cur - prev)};font-size:10.5px"> ${sign((cur / prev - 1) * 100)}${((cur / prev - 1) * 100).toFixed(0)}%</span>`;
     return `<tr><td>${y.fy}</td>
       <td>${unit(y.revenue)}${g(y.revenue, pr?.revenue)}</td>
       <td>${unit(y.income)}${g(y.income, pr?.income)}</td></tr>`;
