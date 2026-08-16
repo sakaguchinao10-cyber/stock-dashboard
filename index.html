@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0E15">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>銘柄ウォッチ</title>
+<style>
+:root{
+  /* 罫線の慣習にあわせ、上昇=朱・下落=藍 */
+  --up:#FF4D5E; --up-dim:rgba(255,77,94,.14);
+  --down:#4C9DFF; --down-dim:rgba(76,157,255,.14);
+  --bg:#0A0E15; --surface:#131A25; --surface-2:#1A2331;
+  --line:#212C3D; --line-soft:#18202C;
+  --ink:#E6ECF4; --ink-2:#9CAABC; --ink-3:#66768C;
+  --focus:#F2C14E;
+  --r:14px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono","Roboto Mono",Menlo,monospace;
+  --jp:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic UI",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--jp);
+  font-size:15px; line-height:1.5;
+  padding:0 0 env(safe-area-inset-bottom);
+  -webkit-font-smoothing:antialiased;
+}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:6px}
+
+/* ---------- ヘッダー ---------- */
+header{
+  position:sticky;top:0;z-index:20;background:rgba(10,14,21,.94);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft);
+  padding:calc(10px + env(safe-area-inset-top)) 0 0;
+}
+.hrow{display:flex;align-items:baseline;justify-content:space-between;padding:0 14px 8px;gap:10px}
+h1{font-size:16px;font-weight:700;margin:0;letter-spacing:.04em}
+#stamp{font-size:10.5px;color:var(--ink-3);white-space:nowrap}
+
+/* 指数ティッカー */
+#idx{display:flex;gap:7px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}
+#idx::-webkit-scrollbar{display:none}
+.ipill{
+  flex:0 0 auto;background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:9px;padding:5px 10px;min-width:96px
+}
+/* ドル円など pin:true の指数は横スクロールしても左端に残る */
+.ipill.pin{
+  position:sticky;left:0;z-index:2;
+  border-color:var(--line);background:var(--surface-2);
+  box-shadow:8px 0 10px -8px rgba(10,14,21,.95)
+}
+.ipill b{display:block;font-size:10px;font-weight:600;color:var(--ink-2);letter-spacing:.03em}
+.ipill span{font-size:13px;font-weight:700}
+.ipill i{font-style:normal;font-size:10.5px;margin-left:5px}
+
+/* タブ */
+#tabs{display:flex;gap:6px;padding:0 14px 10px}
+.tab{
+  flex:1;background:transparent;border:1px solid var(--line);color:var(--ink-2);
+  font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 0;
+  border-radius:9px;cursor:pointer;transition:background .15s,color .15s
+}
+.tab[aria-selected="true"]{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
+
+/* ---------- カード ---------- */
+main{padding:12px 14px 40px;display:grid;gap:10px;max-width:760px;margin:0 auto}
+.card{
+  background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);
+  padding:12px 13px;display:grid;gap:9px
+}
+
+/* 行1: 銘柄と株価 */
+.r1{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.who{min-width:0}
+.code{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.06em}
+.name{font-size:15px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.px{text-align:right;white-space:nowrap}
+.px .p{font-size:20px;font-weight:700}
+.px .d{font-size:12px;font-weight:600;margin-top:1px}
+
+/* 行2: 6ヶ月チャート + 期間騰落 */
+.r2{display:flex;align-items:center;gap:11px}
+.spark{flex:1;min-width:0;height:46px;display:block}
+.pers{display:grid;gap:2px;text-align:right;flex:0 0 auto}
+.pers div{font-size:10.5px;white-space:nowrap}
+.pers em{font-style:normal;color:var(--ink-3);margin-right:5px;font-size:9.5px;letter-spacing:.05em}
+
+/* 行3: 直近5営業日ストリップ */
+.r3{display:flex;align-items:stretch;gap:4px}
+.d5{
+  flex:1;background:var(--surface-2);border-radius:6px;padding:4px 2px 3px;
+  text-align:center;position:relative;overflow:hidden
+}
+.d5 .bar{position:absolute;left:0;right:0;opacity:.85}
+.d5 .v{position:relative;font-family:var(--mono);font-size:10.5px;font-weight:600}
+.d5 .dt{position:relative;font-family:var(--mono);font-size:8.5px;color:var(--ink-3);display:block}
+
+/* 行4: 指標 */
+.r4{display:flex;gap:0;border-top:1px solid var(--line-soft);padding-top:8px}
+.mt{flex:1;text-align:center;border-right:1px solid var(--line-soft)}
+.mt:last-child{border-right:0}
+.mt b{display:block;font-size:9.5px;letter-spacing:.1em;color:var(--ink-3);font-weight:600}
+.mt span{font-family:var(--mono);font-size:13.5px;font-weight:600}
+
+/* 行5: 決算・スコア・リンク */
+.r5{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;flex-wrap:wrap}
+.links{flex-wrap:wrap}
+.chips{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.chip{
+  font-size:10.5px;font-weight:600;padding:3px 7px;border-radius:6px;
+  background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line-soft)
+}
+.chip.up{color:var(--up);border-color:rgba(255,77,94,.3);background:var(--up-dim)}
+.chip.dn{color:var(--down);border-color:rgba(76,157,255,.3);background:var(--down-dim)}
+.gauge{display:inline-flex;gap:2.5px;vertical-align:middle;margin-left:4px}
+.gauge i{width:5px;height:5px;border-radius:1.5px;background:var(--line);display:block}
+.gauge i.on{background:var(--up)}
+.links{display:flex;gap:6px}
+.links a{
+  font-size:10.5px;font-weight:600;color:var(--ink-2);text-decoration:none;
+  border:1px solid var(--line);border-radius:6px;padding:3px 8px;white-space:nowrap
+}
+.links a:hover{color:var(--ink);border-color:var(--ink-3)}
+
+/* 展開部 */
+.more{display:none;border-top:1px solid var(--line-soft);padding-top:8px}
+.card.open .more{display:block}
+.more table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px}
+.more th{color:var(--ink-3);font-weight:600;text-align:right;padding:3px 0;font-size:9.5px;letter-spacing:.06em}
+.more th:first-child{text-align:left}
+.more td{text-align:right;padding:3px 0;border-top:1px solid var(--line-soft)}
+.more td:first-child{text-align:left;color:var(--ink-2)}
+.why{margin-top:7px;font-size:10.5px;color:var(--ink-3);line-height:1.6}
+.toggle{
+  background:none;border:1px dashed var(--line);color:var(--ink-3);font-family:inherit;
+  font-size:10.5px;cursor:pointer;padding:3px 8px;font-weight:600;border-radius:6px
+}
+.toggle:hover{color:var(--ink);border-color:var(--ink-3)}
+
+/* 状態表示 */
+.state{padding:48px 20px;text-align:center;color:var(--ink-2);font-size:13.5px;line-height:1.8}
+.state code{font-family:var(--mono);background:var(--surface);padding:2px 6px;border-radius:5px;font-size:12px}
+footer{padding:0 16px 32px;color:var(--ink-3);font-size:10.5px;line-height:1.7;text-align:center;max-width:760px;margin:0 auto}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hrow">
+    <h1>銘柄ウォッチ</h1>
+    <div id="stamp" class="num">読み込み中…</div>
+  </div>
+  <div id="idx"></div>
+  <div id="tabs" role="tablist"></div>
+</header>
+
+<main id="list"><div class="state">データを読み込んでいます…</div></main>
+
+<footer>
+  株価・指標は Yahoo Finance（yfinance）から取得した参考値です。判断スコアは公開データから機械的に算出した独自指標で、投資助言ではありません。売買の判断はご自身の責任でお願いします。
+</footer>
+
+<script>
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+let DATA = null, FILTER = "ALL";
+
+/* ---------- 表示ヘルパー ---------- */
+const sign = v => v == null ? "" : (v > 0 ? "+" : "");
+const col  = v => v == null ? "var(--ink-2)" : (v > 0 ? "var(--up)" : v < 0 ? "var(--down)" : "var(--ink-2)");
+const arrow= v => v == null ? "" : (v > 0 ? "▲" : v < 0 ? "▼" : "－");
+
+function money(v, cur) {
+  if (v == null) return "—";
+  const d = cur === "JPY" ? (v >= 1000 ? 0 : 1) : 2;
+  return v.toLocaleString("ja-JP", { minimumFractionDigits: d, maximumFractionDigits: d });
+}
+const pct = v => v == null ? "—" : sign(v) + v.toFixed(2) + "%";
+
+/* 6ヶ月スパークライン。始値を基準線とし、上回る面は朱・下回る面は藍で塗る */
+function sparkline(closes) {
+  const W = 240, H = 46, P = 3;
+  if (!closes || closes.length < 2) return `<svg class="spark" viewBox="0 0 ${W} ${H}"></svg>`;
+  const min = Math.min(...closes), max = Math.max(...closes), rng = (max - min) || 1;
+  const x = i => P + i * (W - P * 2) / (closes.length - 1);
+  const y = v => P + (H - P * 2) * (1 - (v - min) / rng);
+  const base = closes[0], yBase = y(base), rising = closes[closes.length - 1] >= base;
+  const line = closes.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
+  const id = "g" + Math.random().toString(36).slice(2, 8);
+  const c = rising ? "255,77,94" : "76,157,255";
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(${c},.34)"/><stop offset="100%" stop-color="rgba(${c},0)"/>
+    </linearGradient></defs>
+    <line x1="0" y1="${yBase.toFixed(1)}" x2="${W}" y2="${yBase.toFixed(1)}"
+          stroke="var(--line)" stroke-width="1" stroke-dasharray="2 3"/>
+    <path d="${line}L${x(closes.length - 1).toFixed(1)},${H}L${P},${H}Z" fill="url(#${id})"/>
+    <path d="${line}" fill="none" stroke="rgb(${c})" stroke-width="1.6"
+          stroke-linejoin="round" stroke-linecap="round"/>
+  </svg>`;
+}
+
+/* 直近5営業日ストリップ。中央を0%として上下に伸びる */
+function strip(last5) {
+  if (!last5 || !last5.length) return "";
+  const peak = Math.max(1, ...last5.map(d => Math.abs(d.pct ?? 0)));
+  return last5.map(d => {
+    const v = d.pct ?? 0, h = Math.min(50, Math.abs(v) / peak * 50);
+    const up = v >= 0;
+    const bar = `<span class="bar" style="${up ? "bottom:50%" : "top:50%"};height:${h}%;
+      background:${up ? "var(--up-dim)" : "var(--down-dim)"}"></span>`;
+    return `<div class="d5">${bar}
+      <span class="dt">${d.date ?? ""}</span>
+      <span class="v" style="color:${col(v)}">${v == null ? "—" : sign(v) + v.toFixed(1)}</span>
+    </div>`;
+  }).join("");
+}
+
+function streakChips(f) {
+  if (!f) return "";
+  const out = [];
+  const r = f.revenueUpStreak, i = f.incomeUpStreak;
+  if (r != null) out.push(`<span class="chip ${r > 0 ? "up" : ""}">${r > 0 ? `増収${r}期` : "増収なし"}</span>`);
+  if (i != null) out.push(`<span class="chip ${i > 0 ? "up" : ""}">${i > 0 ? `増益${i}期` : "増益なし"}</span>`);
+  return out.join("");
+}
+
+function gauge(sc) {
+  if (!sc || sc.score == null) return "";
+  const on = sc.score, max = sc.max ?? 6;
+  const dots = Array.from({ length: max }, (_, i) => `<i class="${i < on ? "on" : ""}"></i>`).join("");
+  return `<span class="chip">スコア ${on}/${max}<span class="gauge">${dots}</span></span>`;
+}
+
+function finTable(f, currency) {
+  if (!f || !f.years || !f.years.length) return `<div class="why">決算データを取得できませんでした。</div>`;
+  const jpy = currency === "JPY";
+  const div = jpy ? 1e8 : 1e6;
+  const label = jpy ? "億円" : "百万ドル";
+  const unit = v => v == null ? "—" : (v / div).toLocaleString("ja-JP", { maximumFractionDigits: 0 });
+  const rows = f.years.map((y, i, a) => {
+    const pr = i ? a[i - 1] : null;
+    const g = (cur, prev) => (cur == null || prev == null || !prev) ? "" :
+      `<span style="color:${col(cur - prev)};font-size:9.5px"> ${sign((cur / prev - 1) * 100)}${((cur / prev - 1) * 100).toFixed(0)}%</span>`;
+    return `<tr><td>${y.fy}</td>
+      <td>${unit(y.revenue)}${g(y.revenue, pr?.revenue)}</td>
+      <td>${unit(y.income)}${g(y.income, pr?.income)}</td></tr>`;
+  }).join("");
+  return `<table><thead><tr><th>通期</th><th>売上高</th><th>純利益</th></tr></thead><tbody>${rows}</tbody></table>
+    <div class="why">単位は${label}（通期実績）。通期予想に対する進捗率は無料データ源では取得できないため未対応です。</div>`;
+}
+
+/* ---------- カード描画 ---------- */
+function card(s) {
+  const v = s.valuation || {}, p = s.periods || {};
+  const disp = s.symbol.endsWith(".T") ? s.symbol.slice(0, -2) : s.symbol;
+  const cur = s.currency === "JPY" ? "円" : "$";
+  const per = o => `<div><em>${o.k}</em><span style="color:${col(o.v)}" class="num">${pct(o.v)}</span></div>`;
+  const LINK_LABEL = { kabutan: "株探", yahoo: "Yahoo", google: "Google" };
+  const links = Object.entries(s.links || {}).map(([k, u]) =>
+    `<a href="${u}" target="_blank" rel="noopener">${LINK_LABEL[k] || k}</a>`).join("");
+
+  return `<article class="card" data-group="${s.group}">
+    <div class="r1">
+      <div class="who">
+        <div class="code">${disp}</div>
+        <div class="name">${s.name}</div>
+      </div>
+      <div class="px">
+        <div class="p num">${money(s.price, s.currency)}<span style="font-size:11px;color:var(--ink-3)"> ${cur}</span></div>
+        <div class="d num" style="color:${col(s.changePct)}">${arrow(s.changePct)} ${money(Math.abs(s.change ?? 0), s.currency)} (${pct(s.changePct)})</div>
+      </div>
+    </div>
+
+    <div class="r2">
+      ${sparkline(s.chart?.closes)}
+      <div class="pers">
+        ${per({ k: "1M", v: p["1m"] })}${per({ k: "3M", v: p["3m"] })}${per({ k: "6M", v: p["6m"] })}
+      </div>
+    </div>
+
+    <div class="r3">${strip(s.last5)}</div>
+
+    <div class="r4">
+      <div class="mt"><b>PER</b><span>${v.per != null ? v.per.toFixed(1) : "—"}</span></div>
+      <div class="mt"><b>PBR</b><span>${v.pbr != null ? v.pbr.toFixed(2) : "—"}</span></div>
+      <div class="mt"><b>利回り</b><span>${v.dividendYield != null ? v.dividendYield.toFixed(2) + "%" : "—"}</span></div>
+    </div>
+
+    <div class="r5">
+      <div class="chips">${streakChips(s.financials)}${gauge(s.scoring)}</div>
+      <div class="links">${links}<button class="toggle" aria-expanded="false">詳細</button></div>
+    </div>
+
+    <div class="more">
+      ${finTable(s.financials, s.currency)}
+      ${s.scoring?.reasons?.length ? `<div class="why">スコア内訳: ${s.scoring.reasons.join(" / ")}</div>` : ""}
+    </div>
+  </article>`;
+}
+
+function render() {
+  const list = $("#list");
+  const rows = DATA.stocks.filter(s => FILTER === "ALL" || s.group === FILTER);
+  list.innerHTML = rows.length
+    ? rows.map(card).join("")
+    : `<div class="state">この区分に銘柄がありません。<br><code>tickers.json</code> に追加してください。</div>`;
+  list.querySelectorAll(".toggle").forEach(b => b.addEventListener("click", () => {
+    const c = b.closest(".card"), open = c.classList.toggle("open");
+    b.setAttribute("aria-expanded", String(open));
+    b.textContent = open ? "閉じる" : "詳細";
+  }));
+}
+
+function renderChrome() {
+  $("#stamp").textContent = "更新 " + (DATA.updatedAt || "").replace("T", " ").slice(5, 16);
+
+  $("#idx").innerHTML = (DATA.indices || []).map(i => `
+    <div class="ipill${i.pin ? " pin" : ""}">
+      <b>${i.name}</b>
+      <span class="num">${money(i.price, i.currency)}</span>
+      <i class="num" style="color:${col(i.changePct)}">${arrow(i.changePct)}${pct(i.changePct)}</i>
+    </div>`).join("");
+
+  const groups = ["ALL", ...new Set(DATA.stocks.map(s => s.group))];
+  const label = { ALL: "すべて", JP: "日本株", US: "米国株" };
+  $("#tabs").innerHTML = groups.map(g =>
+    `<button class="tab" role="tab" data-g="${g}" aria-selected="${g === FILTER}">${label[g] || g}</button>`).join("");
+  $("#tabs").querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+    FILTER = t.dataset.g;
+    $("#tabs").querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", String(x === t)));
+    render();
+  }));
+}
+
+async function boot() {
+  try {
+    const res = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    DATA = await res.json();
+    renderChrome();
+    render();
+    if (DATA.errors?.length) {
+      $("#list").insertAdjacentHTML("beforeend",
+        `<div class="state" style="padding:14px">取得できなかった銘柄: ${DATA.errors.length} 件<br>
+         <span style="font-size:11px;color:var(--ink-3)">${DATA.errors.join("<br>")}</span></div>`);
+    }
+  } catch (e) {
+    $("#stamp").textContent = "未取得";
+    $("#list").innerHTML = `<div class="state">
+      <code>data.json</code> を読み込めませんでした。<br>
+      GitHub Actions の実行が完了しているか確認してください。<br><br>
+      <span style="font-size:11.5px;color:var(--ink-3)">
+      ファイルを直接開いた場合はブラウザの制限で読み込めません。<br>
+      GitHub Pages か <code>python -m http.server</code> 経由で開いてください。<br>(${e.message})</span>
+    </div>`;
+  }
+}
+boot();
+</script>
+</body>
+</html>
