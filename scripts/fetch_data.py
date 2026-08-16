@@ -75,14 +75,17 @@ def build_links(symbol, exchange=None):
 
 # ---------------------------------------------------------------- fetchers
 def fetch_history(ticker):
-    """6ヶ月分の日足を取得し、終値リストと日付リストを返す。"""
+    """6ヶ月分の日足を取得し、OHLC(始値・高値・安値・終値)と日付を返す。"""
     hist = ticker.history(period="6mo", interval="1d", auto_adjust=False)
     if hist is None or hist.empty:
-        return [], []
+        return [], [], [], [], []
     hist = hist.dropna(subset=["Close"])
+    opens = [float(v) for v in hist["Open"].tolist()]
+    highs = [float(v) for v in hist["High"].tolist()]
+    lows = [float(v) for v in hist["Low"].tolist()]
     closes = [float(v) for v in hist["Close"].tolist()]
     dates = [d.strftime("%Y-%m-%d") for d in hist.index]
-    return closes, dates
+    return opens, highs, lows, closes, dates
 
 
 def downsample(closes, dates, limit=MAX_CHART_POINTS):
@@ -219,9 +222,25 @@ def period_change(closes, days):
     return clean((closes[-1] / closes[-1 - days] - 1) * 100)
 
 
+def ohlc_bars(opens, highs, lows, closes, dates, days):
+    """直近 days 営業日分の OHLC バーを返す（ローソク足用）。"""
+    n = len(closes)
+    k = min(days, n)
+    out = []
+    for i in range(n - k, n):
+        out.append({
+            "d": dates[i][5:],                 # MM-DD
+            "o": clean(opens[i], 2),
+            "h": clean(highs[i], 2),
+            "l": clean(lows[i], 2),
+            "c": clean(closes[i], 2),
+        })
+    return out
+
+
 def build_entry(symbol, name, group, with_details=True, exchange=None):
     ticker = yf.Ticker(symbol)
-    closes, dates = fetch_history(ticker)
+    opens, highs, lows, closes, dates = fetch_history(ticker)
     if not closes:
         raise RuntimeError("履歴データが空です")
 
@@ -235,7 +254,8 @@ def build_entry(symbol, name, group, with_details=True, exchange=None):
         pct = (closes[i] / closes[i - 1] - 1) * 100 if i > 0 else None
         last5.append({"date": dates[i][5:], "pct": clean(pct)})
 
-    chart_closes, chart_dates = downsample(closes, dates)
+    # 3M は折れ線（終値を間引き）、1M/2W はローソク足（OHLC）
+    line_closes, line_dates = downsample(closes[-63:], dates[-63:])
 
     entry = {
         "symbol": symbol,
@@ -247,7 +267,11 @@ def build_entry(symbol, name, group, with_details=True, exchange=None):
         "change": clean(change, 2),
         "changePct": clean((price / prev - 1) * 100) if prev else None,
         "last5": last5,
-        "chart": {"dates": chart_dates, "closes": [clean(c, 2) for c in chart_closes]},
+        "chart": {
+            "line3m": {"dates": line_dates, "closes": [clean(c, 2) for c in line_closes]},
+            "ohlc1m": ohlc_bars(opens, highs, lows, closes, dates, 21),
+            "ohlc2w": ohlc_bars(opens, highs, lows, closes, dates, 10),
+        },
         "periods": {
             "1m": period_change(closes, 21),
             "3m": period_change(closes, 63),
