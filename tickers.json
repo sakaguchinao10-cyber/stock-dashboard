@@ -19,7 +19,7 @@
     { "symbol": "6758.T", "name": "ソニーグループ",         "group": "JP" },
     { "symbol": "8729.T", "name": "ソニーフィナンシャルG",  "group": "JP" },
     { "symbol": "9434.T", "name": "ソフトバンク",           "group": "JP" },
-    { "symbol": "8267.T", "name": "イオン",             　　"group": "JP" },
+    { "symbol": "8267.T", "name": "イオン",                 "group": "JP" },
 
     { "symbol": "AAPL",  "name": "Apple",                  "group": "US", "exchange": "NASDAQ" },
     { "symbol": "MSFT",  "name": "Microsoft",              "group": "US", "exchange": "NASDAQ" },
