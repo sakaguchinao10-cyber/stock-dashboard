@@ -66,6 +66,7 @@ def entry(sym, name, group, base, details=True):
         },
         "links": ({} if sym.startswith("^") or "=" in sym else
                   ({"kabutan": f"https://kabutan.jp/stock/?code={sym[:-2]}",
+                    "margin": f"https://kabutan.jp/stock/kabuka?code={sym[:-2]}&ashi=shin",
                     "yahoo": f"https://finance.yahoo.co.jp/quote/{sym}",
                     "google": f"https://www.google.com/finance/quote/{sym[:-2]}:TYO?hl=ja"}
                    if sym.endswith(".T") else
@@ -109,17 +110,18 @@ def entry(sym, name, group, base, details=True):
 
 bases = {
   # 日本株
-  "7011.T": 3400, "7012.T": 8200, "4661.T": 3600, "9432.T": 158, "6432.T": 4700,
+  "7011.T": 3400, "7012.T": 8200, "4661.T": 3600, "9432.T": 158, "6432.T": 7500,
   "2432.T": 2100, "8058.T": 3600, "7203.T": 3180, "7201.T": 480, "7267.T": 1650,
-  "6976.T": 4900, "6702.T": 3410, "5965.T": 1120,
+  "6976.T": 4900, "6702.T": 3410, "5965.T": 1120, "8136.T": 4300, "7974.T": 11500,
+  "6758.T": 3900, "8729.T": 320, "9434.T": 210, "8267.T": 3800, "5401.T": 3300, "8766.T": 6100, "3923.T": 2400, "4901.T": 3600, "3003.T": 1500, "8439.T": 2100, "8593.T": 1250,
   # 米国株
   "AAPL": 232, "MSFT": 470, "GOOG": 205, "AMZN": 231, "TSLA": 340, "NVDA": 178,
-  "PLTR": 158, "SOFI": 22, "RBLX": 128, "IONQ": 44,
+  "SPCX": 108, "PLTR": 158, "SOFI": 22, "RBLX": 128, "IONQ": 44,
   # ETF
-  "SPCX": 32, "SPHY": 23, "SPYD": 43, "SPYM": 78,
+  "SPHY": 23, "SPYD": 43, "SPYM": 78,
   # 指数
   "^N225": 42800, "^TPX": 3050, "^GSPC": 6420, "^IXIC": 21500,
-  "USDJPY=X": 148.6, "EURJPY=X": 172.4,
+  "USDJPY=X": 148.6, "EURJPY=X": 172.4, "NIY=F": 42800,
 }
 
 

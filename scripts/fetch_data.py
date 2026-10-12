@@ -63,6 +63,7 @@ def build_links(symbol, exchange=None):
         code = symbol[:-2]
         return {
             "kabutan": f"https://kabutan.jp/stock/?code={code}",
+            "margin": f"https://kabutan.jp/stock/kabuka?code={code}&ashi=shin",
             "yahoo": f"https://finance.yahoo.co.jp/quote/{symbol}",
             "google": f"https://www.google.com/finance/quote/{code}:{exchange or 'TYO'}?hl=ja",
         }

@@ -369,7 +369,7 @@ function card(s) {
   const disp = s.symbol.endsWith(".T") ? s.symbol.slice(0, -2) : s.symbol;
   const cur = s.currency === "JPY" ? "円" : "$";
   const per = o => `<div><em>${o.k}</em><span style="color:${col(o.v)}" class="num">${pct(o.v)}</span></div>`;
-  const LINK_LABEL = { kabutan: "株探", yahoo: "Yahoo", google: "Google" };
+  const LINK_LABEL = { kabutan: "株探", margin: "信用", yahoo: "Yahoo", google: "Google" };
   const links = Object.entries(s.links || {}).map(([k, u]) =>
     `<a href="${u}" target="_blank" rel="noopener">${LINK_LABEL[k] || k}</a>`).join("");
 
