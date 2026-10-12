@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-10T10:34:37+09:00",
+ "updatedAt": "2026-10-12T11:59:55+09:00",
  "source": "Yahoo Finance (yfinance)",
  "indices": [
   {
@@ -9,13 +9,9 @@
    "currency": "USD",
    "price": 158.25,
    "prevClose": 158.06,
-   "change": 0.19,
+   "change": 0.18,
    "changePct": 0.12,
    "last5": [
-    {
-     "date": "10-05",
-     "pct": -0.12
-    },
     {
      "date": "10-06",
      "pct": 0.15
@@ -30,13 +26,16 @@
     },
     {
      "date": "10-09",
+     "pct": 0.0
+    },
+    {
+     "date": "10-12",
      "pct": 0.12
     }
    ],
    "chart": {
     "line3m": {
      "dates": [
-      "2026-07-15",
       "2026-07-16",
       "2026-07-17",
       "2026-07-20",
@@ -98,10 +97,10 @@
       "2026-10-06",
       "2026-10-07",
       "2026-10-08",
-      "2026-10-09"
+      "2026-10-09",
+      "2026-10-12"
      ],
      "closes": [
-      162.19,
       162.07,
       162.38,
       162.51,
@@ -163,17 +162,11 @@
       157.96,
       158.3,
       158.06,
+      158.06,
       158.25
      ]
     },
     "ohlc1m": [
-     {
-      "d": "09-11",
-      "o": 154.46,
-      "h": 154.58,
-      "l": 153.31,
-      "c": 154.48
-     },
      {
       "d": "09-14",
       "o": 153.44,
@@ -309,20 +302,20 @@
      },
      {
       "d": "10-09",
-      "o": 157.79,
-      "h": 158.43,
-      "l": 157.75,
+      "o": 158.05,
+      "h": 158.42,
+      "l": 157.76,
+      "c": 158.06
+     },
+     {
+      "d": "10-12",
+      "o": 158.22,
+      "h": 158.41,
+      "l": 158.07,
       "c": 158.25
      }
     ],
     "ohlc2w": [
-     {
-      "d": "09-28",
-      "o": 157.45,
-      "h": 157.85,
-      "l": 156.53,
-      "c": 157.46
-     },
      {
       "d": "09-29",
       "o": 157.35,
@@ -381,17 +374,24 @@
      },
      {
       "d": "10-09",
-      "o": 157.79,
-      "h": 158.43,
-      "l": 157.75,
+      "o": 158.05,
+      "h": 158.42,
+      "l": 157.76,
+      "c": 158.06
+     },
+     {
+      "d": "10-12",
+      "o": 158.22,
+      "h": 158.41,
+      "l": 158.07,
       "c": 158.25
      }
     ]
    },
    "periods": {
-    "1m": 3.04,
-    "3m": -2.58,
-    "6m": -0.25
+    "1m": 2.44,
+    "3m": -2.43,
+    "6m": -0.9
    },
    "links": {},
    "pin": true
@@ -795,15 +795,11 @@
    "name": "日経225先物",
    "group": "INDEX",
    "currency": "USD",
-   "price": 69050.0,
-   "prevClose": 68137.0,
-   "change": 913.0,
-   "changePct": 1.34,
+   "price": 69270.0,
+   "prevClose": 68940.0,
+   "change": 330.0,
+   "changePct": 0.48,
    "last5": [
-    {
-     "date": "10-05",
-     "pct": 0.11
-    },
     {
      "date": "10-06",
      "pct": 0.93
@@ -818,14 +814,16 @@
     },
     {
      "date": "10-09",
-     "pct": 1.34
+     "pct": 1.18
+    },
+    {
+     "date": "10-11",
+     "pct": 0.48
     }
    ],
    "chart": {
     "line3m": {
      "dates": [
-      "2026-07-13",
-      "2026-07-14",
       "2026-07-15",
       "2026-07-16",
       "2026-07-17",
@@ -879,6 +877,7 @@
       "2026-09-24",
       "2026-09-25",
       "2026-09-28",
+      "2026-09-29",
       "2026-09-30",
       "2026-10-01",
       "2026-10-02",
@@ -886,11 +885,10 @@
       "2026-10-06",
       "2026-10-07",
       "2026-10-08",
-      "2026-10-09"
+      "2026-10-09",
+      "2026-10-11"
      ],
      "closes": [
-      67350.0,
-      68145.0,
       67790.0,
       65890.0,
       64975.0,
@@ -944,6 +942,7 @@
       65730.0,
       66595.0,
       65895.0,
+      66230.0,
       66810.0,
       68270.0,
       69855.0,
@@ -951,24 +950,11 @@
       70585.0,
       69560.0,
       68137.0,
-      69050.0
+      68940.0,
+      69270.0
      ]
     },
     "ohlc1m": [
-     {
-      "d": "09-10",
-      "o": 64315.0,
-      "h": 65325.0,
-      "l": 63930.0,
-      "c": 64015.0
-     },
-     {
-      "d": "09-11",
-      "o": 64710.0,
-      "h": 64710.0,
-      "l": 64710.0,
-      "c": 64710.0
-     },
      {
       "d": "09-14",
       "o": 63155.0,
@@ -1047,6 +1033,13 @@
       "c": 65895.0
      },
      {
+      "d": "09-29",
+      "o": 66230.0,
+      "h": 66230.0,
+      "l": 66230.0,
+      "c": 66230.0
+     },
+     {
       "d": "09-30",
       "o": 66810.0,
       "h": 66810.0,
@@ -1097,26 +1090,26 @@
      },
      {
       "d": "10-09",
-      "o": 68395.0,
-      "h": 69520.0,
-      "l": 68270.0,
-      "c": 69050.0
+      "o": 68940.0,
+      "h": 68940.0,
+      "l": 68940.0,
+      "c": 68940.0
+     },
+     {
+      "d": "10-11",
+      "o": 69140.0,
+      "h": 69380.0,
+      "l": 69020.0,
+      "c": 69270.0
      }
     ],
     "ohlc2w": [
      {
-      "d": "09-25",
-      "o": 66595.0,
-      "h": 66595.0,
-      "l": 66595.0,
-      "c": 66595.0
-     },
-     {
-      "d": "09-28",
-      "o": 65895.0,
-      "h": 65895.0,
-      "l": 65895.0,
-      "c": 65895.0
+      "d": "09-29",
+      "o": 66230.0,
+      "h": 66230.0,
+      "l": 66230.0,
+      "c": 66230.0
      },
      {
       "d": "09-30",
@@ -1169,17 +1162,24 @@
      },
      {
       "d": "10-09",
-      "o": 68395.0,
-      "h": 69520.0,
-      "l": 68270.0,
-      "c": 69050.0
+      "o": 68940.0,
+      "h": 68940.0,
+      "l": 68940.0,
+      "c": 68940.0
+     },
+     {
+      "d": "10-11",
+      "o": 69140.0,
+      "h": 69380.0,
+      "l": 69020.0,
+      "c": 69270.0
      }
     ]
    },
    "periods": {
-    "1m": 7.6,
-    "3m": 0.03,
-    "6m": 22.2
+    "1m": 7.05,
+    "3m": 1.65,
+    "6m": 20.34
    },
    "links": {},
    "pin": false
@@ -1977,15 +1977,11 @@
    "name": "ユーロ円",
    "group": "INDEX",
    "currency": "USD",
-   "price": 177.3,
-   "prevClose": 177.05,
-   "change": 0.26,
-   "changePct": 0.14,
+   "price": 177.33,
+   "prevClose": 177.23,
+   "change": 0.1,
+   "changePct": 0.06,
    "last5": [
-    {
-     "date": "10-05",
-     "pct": -0.06
-    },
     {
      "date": "10-06",
      "pct": -0.19
@@ -2000,13 +1996,16 @@
     },
     {
      "date": "10-09",
-     "pct": 0.14
+     "pct": 0.1
+    },
+    {
+     "date": "10-12",
+     "pct": 0.06
     }
    ],
    "chart": {
     "line3m": {
      "dates": [
-      "2026-07-15",
       "2026-07-16",
       "2026-07-17",
       "2026-07-20",
@@ -2068,10 +2067,10 @@
       "2026-10-06",
       "2026-10-07",
       "2026-10-08",
-      "2026-10-09"
+      "2026-10-09",
+      "2026-10-12"
      ],
      "closes": [
-      185.29,
       185.88,
       185.83,
       185.71,
@@ -2133,17 +2132,11 @@
       177.18,
       178.14,
       177.05,
-      177.3
+      177.23,
+      177.33
      ]
     },
     "ohlc1m": [
-     {
-      "d": "09-11",
-      "o": 179.35,
-      "h": 179.52,
-      "l": 177.92,
-      "c": 179.35
-     },
      {
       "d": "09-14",
       "o": 177.9,
@@ -2279,20 +2272,20 @@
      },
      {
       "d": "10-09",
-      "o": 176.82,
-      "h": 177.87,
-      "l": 176.82,
-      "c": 177.3
+      "o": 177.23,
+      "h": 177.86,
+      "l": 177.14,
+      "c": 177.23
+     },
+     {
+      "d": "10-12",
+      "o": 177.1,
+      "h": 177.4,
+      "l": 176.73,
+      "c": 177.33
      }
     ],
     "ohlc2w": [
-     {
-      "d": "09-28",
-      "o": 179.13,
-      "h": 179.71,
-      "l": 178.23,
-      "c": 179.16
-     },
      {
       "d": "09-29",
       "o": 178.91,
@@ -2351,17 +2344,24 @@
      },
      {
       "d": "10-09",
-      "o": 176.82,
-      "h": 177.87,
-      "l": 176.82,
-      "c": 177.3
+      "o": 177.23,
+      "h": 177.86,
+      "l": 177.14,
+      "c": 177.23
+     },
+     {
+      "d": "10-12",
+      "o": 177.1,
+      "h": 177.4,
+      "l": 176.73,
+      "c": 177.33
      }
     ]
    },
    "periods": {
-    "1m": -0.75,
-    "3m": -4.1,
-    "6m": -4.14
+    "1m": -1.12,
+    "3m": -4.29,
+    "6m": -4.88
    },
    "links": {},
    "pin": false
@@ -2761,11 +2761,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=7011",
+    "margin": "https://kabutan.jp/stock/kabuka?code=7011&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/7011.T",
     "google": "https://www.google.com/finance/quote/7011:TYO?hl=ja"
    },
    "valuation": {
-    "per": 41.95,
+    "per": 41.82,
     "pbr": 3.89,
     "dividendYield": 82.0
    },
@@ -3199,13 +3200,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=7012",
+    "margin": "https://kabutan.jp/stock/kabuka?code=7012&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/7012.T",
     "google": "https://www.google.com/finance/quote/7012:TYO?hl=ja"
    },
    "valuation": {
     "per": 15.92,
     "pbr": 2.15,
-    "dividendYield": 1.73
+    "dividendYield": 1.65
    },
    "financials": {
     "years": [
@@ -3639,6 +3641,7 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=4661",
+    "margin": "https://kabutan.jp/stock/kabuka?code=4661&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/4661.T",
     "google": "https://www.google.com/finance/quote/4661:TYO?hl=ja"
    },
@@ -4080,6 +4083,7 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=9432",
+    "margin": "https://kabutan.jp/stock/kabuka?code=9432&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/9432.T",
     "google": "https://www.google.com/finance/quote/9432:TYO?hl=ja"
    },
@@ -4518,11 +4522,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=6432",
+    "margin": "https://kabutan.jp/stock/kabuka?code=6432&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/6432.T",
     "google": "https://www.google.com/finance/quote/6432:TYO?hl=ja"
    },
    "valuation": {
-    "per": 11.88,
+    "per": 11.89,
     "pbr": 1.8,
     "dividendYield": 3.03
    },
@@ -4954,13 +4959,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=2432",
+    "margin": "https://kabutan.jp/stock/kabuka?code=2432&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/2432.T",
     "google": "https://www.google.com/finance/quote/2432:TYO?hl=ja"
    },
    "valuation": {
-    "per": 14.52,
+    "per": 14.67,
     "pbr": 1.08,
-    "dividendYield": 2.66
+    "dividendYield": 2.65
    },
    "financials": {
     "years": [
@@ -5395,13 +5401,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=8058",
+    "margin": "https://kabutan.jp/stock/kabuka?code=8058&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/8058.T",
     "google": "https://www.google.com/finance/quote/8058:TYO?hl=ja"
    },
    "valuation": {
-    "per": 19.16,
+    "per": 19.19,
     "pbr": 1.75,
-    "dividendYield": 2.75
+    "dividendYield": 2.69
    },
    "financials": {
     "years": [
@@ -5830,11 +5837,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=7203",
+    "margin": "https://kabutan.jp/stock/kabuka?code=7203&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/7203.T",
     "google": "https://www.google.com/finance/quote/7203:TYO?hl=ja"
    },
    "valuation": {
-    "per": 8.26,
+    "per": 8.28,
     "pbr": 0.92,
     "dividendYield": 3.45
    },
@@ -6273,6 +6281,7 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=7201",
+    "margin": "https://kabutan.jp/stock/kabuka?code=7201&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/7201.T",
     "google": "https://www.google.com/finance/quote/7201:TYO?hl=ja"
    },
@@ -6714,6 +6723,7 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=7267",
+    "margin": "https://kabutan.jp/stock/kabuka?code=7267&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/7267.T",
     "google": "https://www.google.com/finance/quote/7267:TYO?hl=ja"
    },
@@ -7157,11 +7167,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=6976",
+    "margin": "https://kabutan.jp/stock/kabuka?code=6976&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/6976.T",
     "google": "https://www.google.com/finance/quote/6976:TYO?hl=ja"
    },
    "valuation": {
-    "per": 81.52,
+    "per": 82.86,
     "pbr": 3.94,
     "dividendYield": 82.0
    },
@@ -7599,11 +7610,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=6702",
+    "margin": "https://kabutan.jp/stock/kabuka?code=6702&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/6702.T",
     "google": "https://www.google.com/finance/quote/6702:TYO?hl=ja"
    },
    "valuation": {
-    "per": 22.9,
+    "per": 23.59,
     "pbr": 3.62,
     "dividendYield": 1.45
    },
@@ -8036,11 +8048,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=5965",
+    "margin": "https://kabutan.jp/stock/kabuka?code=5965&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/5965.T",
     "google": "https://www.google.com/finance/quote/5965:TYO?hl=ja"
    },
    "valuation": {
-    "per": 3.8,
+    "per": 3.81,
     "pbr": 0.54,
     "dividendYield": 3.36
    },
@@ -8474,6 +8487,7 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=8136",
+    "margin": "https://kabutan.jp/stock/kabuka?code=8136&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/8136.T",
     "google": "https://www.google.com/finance/quote/8136:TYO?hl=ja"
    },
@@ -8912,13 +8926,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=7974",
+    "margin": "https://kabutan.jp/stock/kabuka?code=7974&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/7974.T",
     "google": "https://www.google.com/finance/quote/7974:TYO?hl=ja"
    },
    "valuation": {
-    "per": 19.17,
+    "per": 19.89,
     "pbr": 3.22,
-    "dividendYield": 2.79
+    "dividendYield": 2.82
    },
    "financials": {
     "years": [
@@ -9349,11 +9364,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=6758",
+    "margin": "https://kabutan.jp/stock/kabuka?code=6758&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/6758.T",
     "google": "https://www.google.com/finance/quote/6758:TYO?hl=ja"
    },
    "valuation": {
-    "per": 19.89,
+    "per": 20.47,
     "pbr": 2.68,
     "dividendYield": 94.0
    },
@@ -9791,13 +9807,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=8729",
+    "margin": "https://kabutan.jp/stock/kabuka?code=8729&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/8729.T",
     "google": "https://www.google.com/finance/quote/8729:TYO?hl=ja"
    },
    "valuation": {
-    "per": 18.91,
+    "per": 19.25,
     "pbr": 1.14,
-    "dividendYield": 5.46
+    "dividendYield": 5.38
    },
    "financials": {
     "years": [
@@ -10232,11 +10249,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=9434",
+    "margin": "https://kabutan.jp/stock/kabuka?code=9434&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/9434.T",
     "google": "https://www.google.com/finance/quote/9434:TYO?hl=ja"
    },
    "valuation": {
-    "per": 21.42,
+    "per": 21.47,
     "pbr": 3.98,
     "dividendYield": 3.65
    },
@@ -10674,13 +10692,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=8267",
+    "margin": "https://kabutan.jp/stock/kabuka?code=8267&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/8267.T",
     "google": "https://www.google.com/finance/quote/8267:TYO?hl=ja"
    },
    "valuation": {
-    "per": 33.45,
+    "per": 33.72,
     "pbr": 2.77,
-    "dividendYield": 1.17
+    "dividendYield": 1.15
    },
    "financials": {
     "years": [
@@ -11109,11 +11128,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=5401",
+    "margin": "https://kabutan.jp/stock/kabuka?code=5401&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/5401.T",
     "google": "https://www.google.com/finance/quote/5401:TYO?hl=ja"
    },
    "valuation": {
-    "per": 11.8,
+    "per": 11.77,
     "pbr": 0.58,
     "dividendYield": 3.8
    },
@@ -11546,13 +11566,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=8766",
+    "margin": "https://kabutan.jp/stock/kabuka?code=8766&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/8766.T",
     "google": "https://www.google.com/finance/quote/8766:TYO?hl=ja"
    },
    "valuation": {
     "per": 45.36,
     "pbr": 1.83,
-    "dividendYield": 25.09
+    "dividendYield": 25.19
    },
    "financials": {
     "years": [
@@ -11988,13 +12009,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=3923",
+    "margin": "https://kabutan.jp/stock/kabuka?code=3923&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/3923.T",
     "google": "https://www.google.com/finance/quote/3923:TYO?hl=ja"
    },
    "valuation": {
-    "per": 15.86,
+    "per": 16.6,
     "pbr": 10.47,
-    "dividendYield": 74.0
+    "dividendYield": 75.0
    },
    "financials": {
     "years": [
@@ -12431,13 +12453,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=4901",
+    "margin": "https://kabutan.jp/stock/kabuka?code=4901&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/4901.T",
     "google": "https://www.google.com/finance/quote/4901:TYO?hl=ja"
    },
    "valuation": {
-    "per": 15.81,
+    "per": 15.86,
     "pbr": 1.05,
-    "dividendYield": 2.2
+    "dividendYield": 2.19
    },
    "financials": {
     "years": [
@@ -12873,11 +12896,12 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=3003",
+    "margin": "https://kabutan.jp/stock/kabuka?code=3003&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/3003.T",
     "google": "https://www.google.com/finance/quote/3003:TYO?hl=ja"
    },
    "valuation": {
-    "per": 10.49,
+    "per": 10.62,
     "pbr": 1.34,
     "dividendYield": 4.06
    },
@@ -13309,13 +13333,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=8439",
+    "margin": "https://kabutan.jp/stock/kabuka?code=8439&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/8439.T",
     "google": "https://www.google.com/finance/quote/8439:TYO?hl=ja"
    },
    "valuation": {
-    "per": 10.06,
+    "per": 10.15,
     "pbr": 1.08,
-    "dividendYield": 3.53
+    "dividendYield": 3.46
    },
    "financials": {
     "years": [
@@ -13751,13 +13776,14 @@
    },
    "links": {
     "kabutan": "https://kabutan.jp/stock/?code=8593",
+    "margin": "https://kabutan.jp/stock/kabuka?code=8593&ashi=shin",
     "yahoo": "https://finance.yahoo.co.jp/quote/8593.T",
     "google": "https://www.google.com/finance/quote/8593:TYO?hl=ja"
    },
    "valuation": {
-    "per": 13.64,
+    "per": 13.74,
     "pbr": 0.93,
-    "dividendYield": 4.02
+    "dividendYield": 4.0
    },
    "financials": {
     "years": [
@@ -14192,7 +14218,7 @@
     "google": "https://www.google.com/finance/quote/AAPL:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 39.05,
+    "per": 38.61,
     "pbr": 45.74,
     "dividendYield": 32.0
    },
@@ -15068,9 +15094,9 @@
     "google": "https://www.google.com/finance/quote/GOOG:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 17.31,
+    "per": 17.45,
     "pbr": 6.83,
-    "dividendYield": 26.0
+    "dividendYield": 25.0
    },
    "financials": {
     "years": [
@@ -15505,7 +15531,7 @@
     "google": "https://www.google.com/finance/quote/AMZN:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 20.44,
+    "per": 21.11,
     "pbr": 5.13,
     "dividendYield": 0.0
    },
@@ -16386,7 +16412,7 @@
    "valuation": {
     "per": 28.99,
     "pbr": 24.18,
-    "dividendYield": 43.0
+    "dividendYield": 42.0
    },
    "financials": {
     "years": [
@@ -17701,7 +17727,7 @@
     "google": "https://www.google.com/finance/quote/SOFI:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 31.6,
+    "per": 32.24,
     "pbr": 1.84,
     "dividendYield": 0.0
    },
@@ -19430,7 +19456,7 @@
     "google": "https://www.google.com/finance/quote/SPYD:NYSEARCA?hl=ja"
    },
    "valuation": {
-    "per": 15.8,
+    "per": 15.75,
     "pbr": null,
     "dividendYield": 4.54
    },
@@ -19844,7 +19870,7 @@
     "google": "https://www.google.com/finance/quote/SPYM:NYSEARCA?hl=ja"
    },
    "valuation": {
-    "per": 24.72,
+    "per": 25.16,
     "pbr": null,
     "dividendYield": 1.02
    },
