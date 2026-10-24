@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-23T21:45:10+09:00",
+ "updatedAt": "2026-10-24T09:21:49+09:00",
  "source": "Yahoo Finance (yfinance)",
  "indices": [
   {
@@ -7,10 +7,10 @@
    "name": "ドル円",
    "group": "INDEX",
    "currency": "USD",
-   "price": 156.55,
+   "price": 156.81,
    "prevClose": 158.13,
-   "change": -1.58,
-   "changePct": -1.0,
+   "change": -1.32,
+   "changePct": -0.83,
    "last5": [
     {
      "date": "10-19",
@@ -30,7 +30,7 @@
     },
     {
      "date": "10-23",
-     "pct": -1.0
+     "pct": -0.83
     }
    ],
    "chart": {
@@ -163,7 +163,7 @@
       158.52,
       158.27,
       158.13,
-      156.55
+      156.81
      ]
     },
     "ohlc1m": [
@@ -312,7 +312,7 @@
       "o": 156.77,
       "h": 157.16,
       "l": 156.07,
-      "c": 156.55
+      "c": 156.81
      }
     ],
     "ohlc2w": [
@@ -384,14 +384,14 @@
       "o": 156.77,
       "h": 157.16,
       "l": 156.07,
-      "c": 156.55
+      "c": 156.81
      }
     ]
    },
    "periods": {
-    "1m": -1.08,
-    "3m": -4.41,
-    "6m": -1.84
+    "1m": -0.92,
+    "3m": -4.25,
+    "6m": -1.68
    },
    "links": {},
    "pin": true
@@ -401,11 +401,15 @@
    "name": "日経平均",
    "group": "INDEX",
    "currency": "JPY",
-   "price": 62693.16,
-   "prevClose": 62907.84,
-   "change": -214.68,
-   "changePct": -0.34,
+   "price": 62907.84,
+   "prevClose": 64621.24,
+   "change": -1713.4,
+   "changePct": -2.65,
    "last5": [
+    {
+     "date": "10-16",
+     "pct": 1.39
+    },
     {
      "date": "10-19",
      "pct": -0.62
@@ -421,15 +425,12 @@
     {
      "date": "10-22",
      "pct": -2.65
-    },
-    {
-     "date": "10-23",
-     "pct": -0.34
     }
    ],
    "chart": {
     "line3m": {
      "dates": [
+      "2026-07-21",
       "2026-07-22",
       "2026-07-23",
       "2026-07-24",
@@ -491,10 +492,10 @@
       "2026-10-19",
       "2026-10-20",
       "2026-10-21",
-      "2026-10-22",
-      "2026-10-23"
+      "2026-10-22"
      ],
      "closes": [
+      66232.19,
       66115.6,
       66422.6,
       64611.15,
@@ -556,11 +557,17 @@
       64916.7,
       64075.42,
       64621.24,
-      62907.84,
-      62693.16
+      62907.84
      ]
     },
     "ohlc1m": [
+     {
+      "d": "09-18",
+      "o": 64681.55,
+      "h": 65436.57,
+      "l": 64403.85,
+      "c": 65018.95
+     },
      {
       "d": "09-24",
       "o": 65476.44,
@@ -700,16 +707,16 @@
       "h": 64866.44,
       "l": 62907.84,
       "c": 62907.84
-     },
-     {
-      "d": "10-23",
-      "o": 62667.05,
-      "h": 62786.89,
-      "l": 61462.61,
-      "c": 62693.16
      }
     ],
     "ohlc2w": [
+     {
+      "d": "10-08",
+      "o": 69840.64,
+      "h": 69918.2,
+      "l": 69042.11,
+      "c": 69042.11
+     },
      {
       "d": "10-09",
       "o": 68648.5,
@@ -772,20 +779,13 @@
       "h": 64866.44,
       "l": 62907.84,
       "c": 62907.84
-     },
-     {
-      "d": "10-23",
-      "o": 62667.05,
-      "h": 62786.89,
-      "l": 61462.61,
-      "c": 62693.16
      }
     ]
    },
    "periods": {
-    "1m": -3.58,
-    "3m": -5.34,
-    "6m": 6.01
+    "1m": -1.92,
+    "3m": -1.92,
+    "6m": 6.37
    },
    "links": {},
    "pin": false
@@ -795,10 +795,10 @@
    "name": "日経225先物",
    "group": "INDEX",
    "currency": "USD",
-   "price": 62175.0,
+   "price": 62650.0,
    "prevClose": 62450.0,
-   "change": -275.0,
-   "changePct": -0.44,
+   "change": 200.0,
+   "changePct": 0.32,
    "last5": [
     {
      "date": "10-19",
@@ -818,7 +818,7 @@
     },
     {
      "date": "10-23",
-     "pct": -0.44
+     "pct": 0.32
     }
    ],
    "chart": {
@@ -951,7 +951,7 @@
       64770.0,
       64830.0,
       62450.0,
-      62175.0
+      62650.0
      ]
     },
     "ohlc1m": [
@@ -1100,7 +1100,7 @@
       "o": 62415.0,
       "h": 62965.0,
       "l": 61625.0,
-      "c": 62175.0
+      "c": 62650.0
      }
     ],
     "ohlc2w": [
@@ -1172,14 +1172,14 @@
       "o": 62415.0,
       "h": 62965.0,
       "l": 61625.0,
-      "c": 62175.0
+      "c": 62650.0
      }
     ]
    },
    "periods": {
-    "1m": -5.41,
-    "3m": -2.71,
-    "6m": 5.54
+    "1m": -4.69,
+    "3m": -1.96,
+    "6m": 6.35
    },
    "links": {},
    "pin": false
@@ -1189,15 +1189,11 @@
    "name": "S&P500",
    "group": "INDEX",
    "currency": "USD",
-   "price": 7663.43,
-   "prevClose": 7757.17,
-   "change": -93.74,
-   "changePct": -1.21,
+   "price": 7623.68,
+   "prevClose": 7663.43,
+   "change": -39.75,
+   "changePct": -0.52,
    "last5": [
-    {
-     "date": "10-16",
-     "pct": -1.09
-    },
     {
      "date": "10-19",
      "pct": 0.41
@@ -1213,12 +1209,15 @@
     {
      "date": "10-22",
      "pct": -1.21
+    },
+    {
+     "date": "10-23",
+     "pct": -0.52
     }
    ],
    "chart": {
     "line3m": {
      "dates": [
-      "2026-07-27",
       "2026-07-28",
       "2026-07-29",
       "2026-07-30",
@@ -1280,10 +1279,10 @@
       "2026-10-19",
       "2026-10-20",
       "2026-10-21",
-      "2026-10-22"
+      "2026-10-22",
+      "2026-10-23"
      ],
      "closes": [
-      7413.18,
       7428.78,
       7316.15,
       7437.63,
@@ -1345,17 +1344,11 @@
       7690.73,
       7712.57,
       7757.17,
-      7663.43
+      7663.43,
+      7623.68
      ]
     },
     "ohlc1m": [
-     {
-      "d": "09-24",
-      "o": 7666.99,
-      "h": 7719.01,
-      "l": 7662.57,
-      "c": 7704.13
-     },
      {
       "d": "09-25",
       "o": 7709.86,
@@ -1495,16 +1488,16 @@
       "h": 7702.94,
       "l": 7637.36,
       "c": 7663.43
+     },
+     {
+      "d": "10-23",
+      "o": 7637.18,
+      "h": 7660.15,
+      "l": 7612.07,
+      "c": 7623.68
      }
     ],
     "ohlc2w": [
-     {
-      "d": "10-09",
-      "o": 7786.36,
-      "h": 7820.57,
-      "l": 7779.34,
-      "c": 7811.54
-     },
      {
       "d": "10-12",
       "o": 7813.04,
@@ -1567,13 +1560,20 @@
       "h": 7702.94,
       "l": 7637.36,
       "c": 7663.43
+     },
+     {
+      "d": "10-23",
+      "o": 7637.18,
+      "h": 7660.15,
+      "l": 7612.07,
+      "c": 7623.68
      }
     ]
    },
    "periods": {
-    "1m": -0.55,
-    "3m": 3.39,
-    "6m": 7.81
+    "1m": -1.04,
+    "3m": 2.84,
+    "6m": 6.4
    },
    "links": {},
    "pin": false
@@ -1583,15 +1583,11 @@
    "name": "NASDAQ",
    "group": "INDEX",
    "currency": "USD",
-   "price": 26008.86,
-   "prevClose": 26702.86,
-   "change": -694.0,
-   "changePct": -2.6,
+   "price": 25955.34,
+   "prevClose": 26008.86,
+   "change": -53.52,
+   "changePct": -0.21,
    "last5": [
-    {
-     "date": "10-16",
-     "pct": -2.15
-    },
     {
      "date": "10-19",
      "pct": 1.11
@@ -1607,12 +1603,15 @@
     {
      "date": "10-22",
      "pct": -2.6
+    },
+    {
+     "date": "10-23",
+     "pct": -0.21
     }
    ],
    "chart": {
     "line3m": {
      "dates": [
-      "2026-07-27",
       "2026-07-28",
       "2026-07-29",
       "2026-07-30",
@@ -1674,10 +1673,10 @@
       "2026-10-19",
       "2026-10-20",
       "2026-10-21",
-      "2026-10-22"
+      "2026-10-22",
+      "2026-10-23"
      ],
      "closes": [
-      24932.08,
       24876.91,
       24442.94,
       25122.18,
@@ -1739,17 +1738,11 @@
       26430.89,
       26424.82,
       26702.86,
-      26008.86
+      26008.86,
+      25955.34
      ]
     },
     "ohlc1m": [
-     {
-      "d": "09-24",
-      "o": 26734.51,
-      "h": 26971.04,
-      "l": 26706.14,
-      "c": 26939.37
-     },
      {
       "d": "09-25",
       "o": 26970.95,
@@ -1889,16 +1882,16 @@
       "h": 26359.41,
       "l": 25918.09,
       "c": 26008.86
+     },
+     {
+      "d": "10-23",
+      "o": 25893.95,
+      "h": 26111.62,
+      "l": 25866.15,
+      "c": 25955.34
      }
     ],
     "ohlc2w": [
-     {
-      "d": "10-09",
-      "o": 27342.27,
-      "h": 27395.41,
-      "l": 27254.03,
-      "c": 27366.17
-     },
      {
       "d": "10-12",
       "o": 27352.51,
@@ -1961,13 +1954,20 @@
       "h": 26359.41,
       "l": 25918.09,
       "c": 26008.86
+     },
+     {
+      "d": "10-23",
+      "o": 25893.95,
+      "h": 26111.62,
+      "l": 25866.15,
+      "c": 25955.34
      }
     ]
    },
    "periods": {
-    "1m": -3.44,
-    "3m": 4.14,
-    "6m": 6.43
+    "1m": -3.65,
+    "3m": 4.1,
+    "6m": 4.5
    },
    "links": {},
    "pin": false
@@ -1977,10 +1977,10 @@
    "name": "ユーロ円",
    "group": "INDEX",
    "currency": "USD",
-   "price": 175.25,
+   "price": 175.72,
    "prevClose": 177.66,
-   "change": -2.41,
-   "changePct": -1.36,
+   "change": -1.93,
+   "changePct": -1.09,
    "last5": [
     {
      "date": "10-19",
@@ -2000,7 +2000,7 @@
     },
     {
      "date": "10-23",
-     "pct": -1.36
+     "pct": -1.09
     }
    ],
    "chart": {
@@ -2133,7 +2133,7 @@
       177.76,
       177.67,
       177.66,
-      175.25
+      175.72
      ]
     },
     "ohlc1m": [
@@ -2281,8 +2281,8 @@
       "d": "10-23",
       "o": 175.84,
       "h": 176.23,
-      "l": 175.19,
-      "c": 175.25
+      "l": 175.09,
+      "c": 175.72
      }
     ],
     "ohlc2w": [
@@ -2353,15 +2353,15 @@
       "d": "10-23",
       "o": 175.84,
       "h": 176.23,
-      "l": 175.19,
-      "c": 175.25
+      "l": 175.09,
+      "c": 175.72
      }
     ]
    },
    "periods": {
-    "1m": -2.71,
-    "3m": -5.88,
-    "6m": -6.13
+    "1m": -2.45,
+    "3m": -5.62,
+    "6m": -5.87
    },
    "links": {},
    "pin": false
@@ -2766,7 +2766,7 @@
     "google": "https://www.google.com/finance/quote/7011:TYO?hl=ja"
    },
    "valuation": {
-    "per": 41.19,
+    "per": 42.04,
     "pbr": 3.83,
     "dividendYield": 81.0
    },
@@ -3205,7 +3205,7 @@
     "google": "https://www.google.com/finance/quote/7012:TYO?hl=ja"
    },
    "valuation": {
-    "per": 15.12,
+    "per": 15.53,
     "pbr": 2.04,
     "dividendYield": 1.8
    },
@@ -3646,7 +3646,7 @@
     "google": "https://www.google.com/finance/quote/4661:TYO?hl=ja"
    },
    "valuation": {
-    "per": 39.09,
+    "per": 39.65,
     "pbr": 4.77,
     "dividendYield": 49.0
    },
@@ -4089,7 +4089,7 @@
     "google": "https://www.google.com/finance/quote/9432:TYO?hl=ja"
    },
    "valuation": {
-    "per": 13.69,
+    "per": 13.95,
     "pbr": 1.44,
     "dividendYield": 3.03
    },
@@ -4529,7 +4529,7 @@
     "google": "https://www.google.com/finance/quote/6432:TYO?hl=ja"
    },
    "valuation": {
-    "per": 12.58,
+    "per": 12.36,
     "pbr": 1.86,
     "dividendYield": 3.44
    },
@@ -4969,7 +4969,7 @@
     "google": "https://www.google.com/finance/quote/2432:TYO?hl=ja"
    },
    "valuation": {
-    "per": 14.92,
+    "per": 14.94,
     "pbr": 1.09,
     "dividendYield": 2.58
    },
@@ -5412,7 +5412,7 @@
     "google": "https://www.google.com/finance/quote/8058:TYO?hl=ja"
    },
    "valuation": {
-    "per": 19.69,
+    "per": 20.02,
     "pbr": 1.79,
     "dividendYield": 2.63
    },
@@ -5848,7 +5848,7 @@
     "google": "https://www.google.com/finance/quote/7203:TYO?hl=ja"
    },
    "valuation": {
-    "per": 8.84,
+    "per": 8.78,
     "pbr": 0.99,
     "dividendYield": 3.24
    },
@@ -7176,7 +7176,7 @@
     "google": "https://www.google.com/finance/quote/6976:TYO?hl=ja"
    },
    "valuation": {
-    "per": 62.24,
+    "per": 64.74,
     "pbr": 2.96,
     "dividendYield": 1.03
    },
@@ -7617,7 +7617,7 @@
     "google": "https://www.google.com/finance/quote/6702:TYO?hl=ja"
    },
    "valuation": {
-    "per": 24.85,
+    "per": 25.39,
     "pbr": 3.82,
     "dividendYield": 1.31
    },
@@ -8055,7 +8055,7 @@
     "google": "https://www.google.com/finance/quote/5965:TYO?hl=ja"
    },
    "valuation": {
-    "per": 3.66,
+    "per": 3.69,
     "pbr": 0.52,
     "dividendYield": 3.46
    },
@@ -8932,7 +8932,7 @@
     "google": "https://www.google.com/finance/quote/7974:TYO?hl=ja"
    },
    "valuation": {
-    "per": 20.85,
+    "per": 21.24,
     "pbr": 3.37,
     "dividendYield": 2.52
    },
@@ -9371,7 +9371,7 @@
     "google": "https://www.google.com/finance/quote/6758:TYO?hl=ja"
    },
    "valuation": {
-    "per": 22.21,
+    "per": 21.91,
     "pbr": 2.9,
     "dividendYield": 86.0
    },
@@ -9814,7 +9814,7 @@
     "google": "https://www.google.com/finance/quote/8729:TYO?hl=ja"
    },
    "valuation": {
-    "per": 18.65,
+    "per": 18.5,
     "pbr": 1.11,
     "dividendYield": 5.58
    },
@@ -10253,7 +10253,7 @@
     "google": "https://www.google.com/finance/quote/9434:TYO?hl=ja"
    },
    "valuation": {
-    "per": 21.06,
+    "per": 21.88,
     "pbr": 3.9,
     "dividendYield": 3.57
    },
@@ -10695,7 +10695,7 @@
     "google": "https://www.google.com/finance/quote/8267:TYO?hl=ja"
    },
    "valuation": {
-    "per": 37.3,
+    "per": 35.69,
     "pbr": 2.68,
     "dividendYield": 1.24
    },
@@ -11132,7 +11132,7 @@
     "google": "https://www.google.com/finance/quote/5401:TYO?hl=ja"
    },
    "valuation": {
-    "per": 12.23,
+    "per": 12.49,
     "pbr": 0.61,
     "dividendYield": 3.59
    },
@@ -11571,7 +11571,7 @@
     "google": "https://www.google.com/finance/quote/8766:TYO?hl=ja"
    },
    "valuation": {
-    "per": 48.29,
+    "per": 49.37,
     "pbr": 1.99,
     "dividendYield": 22.76
    },
@@ -12015,7 +12015,7 @@
     "google": "https://www.google.com/finance/quote/3923:TYO?hl=ja"
    },
    "valuation": {
-    "per": 16.29,
+    "per": 16.16,
     "pbr": 10.27,
     "dividendYield": 72.0
    },
@@ -12458,7 +12458,7 @@
     "google": "https://www.google.com/finance/quote/4901:TYO?hl=ja"
    },
    "valuation": {
-    "per": 15.69,
+    "per": 15.75,
     "pbr": 1.04,
     "dividendYield": 2.2
    },
@@ -12900,7 +12900,7 @@
     "google": "https://www.google.com/finance/quote/3003:TYO?hl=ja"
    },
    "valuation": {
-    "per": 11.28,
+    "per": 11.11,
     "pbr": 1.42,
     "dividendYield": 3.83
    },
@@ -13339,7 +13339,7 @@
     "google": "https://www.google.com/finance/quote/8439:TYO?hl=ja"
    },
    "valuation": {
-    "per": 9.81,
+    "per": 9.99,
     "pbr": 1.05,
     "dividendYield": 3.55
    },
@@ -13782,7 +13782,7 @@
     "google": "https://www.google.com/finance/quote/8593:TYO?hl=ja"
    },
    "valuation": {
-    "per": 13.84,
+    "per": 13.86,
     "pbr": 0.94,
     "dividendYield": 3.95
    },
@@ -14211,7 +14211,7 @@
    "periods": {
     "1m": 3.32,
     "3m": 4.56,
-    "6m": 27.35
+    "6m": 28.47
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=AAPL",
@@ -14219,8 +14219,8 @@
     "google": "https://www.google.com/finance/quote/AAPL:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 39.93,
-    "pbr": 47.31,
+    "per": 39.88,
+    "pbr": 47.25,
     "dividendYield": 31.0
    },
    "financials": {
@@ -14649,7 +14649,7 @@
    "periods": {
     "1m": 4.09,
     "3m": 36.52,
-    "6m": 25.33
+    "6m": 22.72
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=MSFT",
@@ -14657,8 +14657,8 @@
     "google": "https://www.google.com/finance/quote/MSFT:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 29.03,
-    "pbr": 8.75,
+    "per": 29.22,
+    "pbr": 8.81,
     "dividendYield": 75.0
    },
    "financials": {
@@ -15086,7 +15086,7 @@
    "periods": {
     "1m": -4.25,
     "3m": 0.52,
-    "6m": -5.03
+    "6m": -6.3
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=GOOG",
@@ -15094,8 +15094,8 @@
     "google": "https://www.google.com/finance/quote/GOOG:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 16.09,
-    "pbr": 6.3,
+    "per": 15.92,
+    "pbr": 6.23,
     "dividendYield": 27.0
    },
    "financials": {
@@ -15521,7 +15521,7 @@
    "periods": {
     "1m": 0.45,
     "3m": 7.87,
-    "6m": -1.84
+    "6m": -5.16
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=AMZN",
@@ -15529,8 +15529,8 @@
     "google": "https://www.google.com/finance/quote/AMZN:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 20.14,
-    "pbr": 4.89,
+    "per": 19.95,
+    "pbr": 4.85,
     "dividendYield": 0.0
    },
    "financials": {
@@ -15956,7 +15956,7 @@
    "periods": {
     "1m": -1.46,
     "3m": 19.66,
-    "6m": 0.23
+    "6m": -0.46
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=TSLA",
@@ -15964,8 +15964,8 @@
     "google": "https://www.google.com/finance/quote/TSLA:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 411.63,
-    "pbr": 13.59,
+    "per": 409.03,
+    "pbr": 13.51,
     "dividendYield": 0.0
    },
    "financials": {
@@ -16398,7 +16398,7 @@
    "periods": {
     "1m": -5.9,
     "3m": 2.6,
-    "6m": 6.3
+    "6m": 1.89
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=NVDA",
@@ -16406,8 +16406,8 @@
     "google": "https://www.google.com/finance/quote/NVDA:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 26.83,
-    "pbr": 22.38,
+    "per": 26.67,
+    "pbr": 22.25,
     "dividendYield": 47.0
    },
    "financials": {
@@ -16848,7 +16848,7 @@
    },
    "valuation": {
     "per": null,
-    "pbr": 173.15,
+    "pbr": 15.27,
     "dividendYield": 0.0
    },
    "financials": {
@@ -17269,7 +17269,7 @@
    "periods": {
     "1m": 2.29,
     "3m": 59.61,
-    "6m": 38.58
+    "6m": 37.11
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=PLTR",
@@ -17277,8 +17277,8 @@
     "google": "https://www.google.com/finance/quote/PLTR:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 173.62,
-    "pbr": 48.23,
+    "per": 169.61,
+    "pbr": 48.37,
     "dividendYield": 0.0
    },
    "financials": {
@@ -17711,7 +17711,7 @@
    "periods": {
     "1m": -10.76,
     "3m": -10.27,
-    "6m": -19.38
+    "6m": -19.9
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=SOFI",
@@ -17719,8 +17719,8 @@
     "google": "https://www.google.com/finance/quote/SOFI:NASDAQ?hl=ja"
    },
    "valuation": {
-    "per": 30.14,
-    "pbr": 1.72,
+    "per": 29.83,
+    "pbr": 1.7,
     "dividendYield": 0.0
    },
    "financials": {
@@ -18149,7 +18149,7 @@
    "periods": {
     "1m": 10.14,
     "3m": 13.48,
-    "6m": -2.69
+    "6m": -3.8
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=RBLX",
@@ -18158,7 +18158,7 @@
    },
    "valuation": {
     "per": null,
-    "pbr": 253.33,
+    "pbr": 248.31,
     "dividendYield": 0.0
    },
    "financials": {
@@ -18586,7 +18586,7 @@
    "periods": {
     "1m": -26.75,
     "3m": -5.12,
-    "6m": -28.58
+    "6m": -27.01
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=IONQ",
@@ -18595,7 +18595,7 @@
    },
    "valuation": {
     "per": null,
-    "pbr": 3.57,
+    "pbr": 3.58,
     "dividendYield": 0.0
    },
    "financials": {
@@ -19024,7 +19024,7 @@
    "periods": {
     "1m": -1.53,
     "3m": -2.93,
-    "6m": -4.46
+    "6m": -4.54
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=SPHY",
@@ -19032,7 +19032,7 @@
     "google": "https://www.google.com/finance/quote/SPHY:NYSEARCA?hl=ja"
    },
    "valuation": {
-    "per": 56.21,
+    "per": 56.19,
     "pbr": null,
     "dividendYield": 7.4
    },
@@ -19436,7 +19436,7 @@
    "periods": {
     "1m": 5.19,
     "3m": -1.81,
-    "6m": 5.3
+    "6m": 6.13
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=SPYD",
@@ -19444,7 +19444,7 @@
     "google": "https://www.google.com/finance/quote/SPYD:NYSEARCA?hl=ja"
    },
    "valuation": {
-    "per": 16.86,
+    "per": 16.77,
     "pbr": null,
     "dividendYield": 4.54
    },
@@ -19851,7 +19851,7 @@
    "periods": {
     "1m": -0.49,
     "3m": 3.42,
-    "6m": 7.86
+    "6m": 7.02
    },
    "links": {
     "kabutan": "https://kabutan.jp/us/stock/?code=SPYM",
@@ -19859,7 +19859,7 @@
     "google": "https://www.google.com/finance/quote/SPYM:NYSEARCA?hl=ja"
    },
    "valuation": {
-    "per": 24.26,
+    "per": 24.13,
     "pbr": null,
     "dividendYield": 1.02
    },
