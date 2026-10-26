@@ -28,6 +28,7 @@
     { "symbol": "8439.T", "name": "東京センチュリー",       "group": "JP" },
     { "symbol": "8593.T", "name": "三菱HCキャピタル",       "group": "JP" },
     { "symbol": "1605.T", "name": "INPEX",                 "group": "JP" },
+    { "symbol": "2579.T", "name": "コカ・コーラBJH",         "group": "JP" },
 
     { "symbol": "AAPL",  "name": "Apple",                  "group": "US", "exchange": "NASDAQ" },
     { "symbol": "MSFT",  "name": "Microsoft",              "group": "US", "exchange": "NASDAQ" },
@@ -40,6 +41,7 @@
     { "symbol": "SOFI",  "name": "SoFi Technologies",      "group": "US", "exchange": "NASDAQ" },
     { "symbol": "RBLX",  "name": "Roblox",                 "group": "US", "exchange": "NYSE" },
     { "symbol": "IONQ",  "name": "IonQ",                   "group": "US", "exchange": "NYSE" },
+    { "symbol": "KO",    "name": "Coca-Cola",              "group": "US", "exchange": "NYSE" },
 
     { "symbol": "SPHY",  "name": "SPDRハイイールド債ETF",  "group": "ETF", "exchange": "NYSEARCA" },
     { "symbol": "SPYD",  "name": "SPDR S&P500高配当ETF",   "group": "ETF", "exchange": "NYSEARCA" },
