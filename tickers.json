@@ -27,6 +27,7 @@
     { "symbol": "3003.T", "name": "ヒューリック",           "group": "JP" },
     { "symbol": "8439.T", "name": "東京センチュリー",       "group": "JP" },
     { "symbol": "8593.T", "name": "三菱HCキャピタル",       "group": "JP" },
+    { "symbol": "1605.T", "name": "INPEX",                 "group": "JP" },
 
     { "symbol": "AAPL",  "name": "Apple",                  "group": "US", "exchange": "NASDAQ" },
     { "symbol": "MSFT",  "name": "Microsoft",              "group": "US", "exchange": "NASDAQ" },
