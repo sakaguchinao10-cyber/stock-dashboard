@@ -42,6 +42,7 @@
     { "symbol": "RBLX",  "name": "Roblox",                 "group": "US", "exchange": "NYSE" },
     { "symbol": "IONQ",  "name": "IonQ",                   "group": "US", "exchange": "NYSE" },
     { "symbol": "KO",    "name": "Coca-Cola",              "group": "US", "exchange": "NYSE" },
+    { "symbol": "META",  "name": "Meta Platforms",         "group": "US", "exchange": "NASDAQ" },
 
     { "symbol": "SPHY",  "name": "SPDRハイイールド債ETF",  "group": "ETF", "exchange": "NYSEARCA" },
     { "symbol": "SPYD",  "name": "SPDR S&P500高配当ETF",   "group": "ETF", "exchange": "NYSEARCA" },
