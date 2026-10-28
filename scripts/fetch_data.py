@@ -114,9 +114,10 @@ def fetch_valuation(ticker):
     dy = info.get("dividendYield")
     if dy is not None:
         try:
-            dy = float(dy)
-            # yfinance は 0.032 形式と 3.2 形式が混在するため正規化
-            out["dividendYield"] = clean(dy * 100 if dy < 1 else dy)
+            # 現行yfinanceは配当利回りを既に%で返す(例: 3.21 = 3.21%)。
+            # 旧コードの「1未満なら×100」補正は、利回り1%未満の銘柄を
+            # 100倍にする不具合があったため廃止し、値をそのまま採用する。
+            out["dividendYield"] = clean(float(dy))
         except (TypeError, ValueError):
             pass
     return out
