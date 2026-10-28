@@ -263,15 +263,38 @@ const $ = (s, r = document) => r.querySelector(s);
 let DATA = null, FILTER = "ALL", RANGE = "1m";
 let SORT = "fav", SORTDIR = {};  // SORT=並び替えキー, SORTDIR=変化率系の昇降(銘柄別ではなくキー別)
 
-/* お気に入り(localStorage・端末ごと)。読み書きは必ずtry/catchで保護 */
-function loadFavs() {
-  try { return new Set(JSON.parse(localStorage.getItem("fav_symbols") || "[]")); }
-  catch (e) { return new Set(); }
+/* お気に入り: 両建て方式
+   ・基準(全端末共通) = data.json の各銘柄 fav:true (tickers.json由来)
+   ・端末ごとの上書き = localStorage の override マップ {symbol: true/false}
+   実効 = override に明示があればそれ、無ければ基準。読み書きは必ずtry/catchで保護 */
+function loadOverride() {
+  try {
+    const o = JSON.parse(localStorage.getItem("fav_override") || "null");
+    if (o && typeof o === "object") return o;
+    // 旧版(Setを fav_symbols に保存)からの移行
+    const old = JSON.parse(localStorage.getItem("fav_symbols") || "[]");
+    const m = {}; (old || []).forEach(s => { m[s] = true; });
+    return m;
+  } catch (e) { return {}; }
 }
-function saveFavs() {
-  try { localStorage.setItem("fav_symbols", JSON.stringify([...FAVS])); } catch (e) {}
+function saveOverride() {
+  try { localStorage.setItem("fav_override", JSON.stringify(OVERRIDE)); } catch (e) {}
 }
-let FAVS = loadFavs();
+let OVERRIDE = loadOverride();
+function baseFav(sym) {
+  const s = DATA && DATA.stocks && DATA.stocks.find(x => x.symbol === sym);
+  return !!(s && s.fav);
+}
+function isFav(sym) {
+  if (Object.prototype.hasOwnProperty.call(OVERRIDE, sym)) return !!OVERRIDE[sym];
+  return baseFav(sym);
+}
+function toggleFav(sym) {
+  const next = !isFav(sym);
+  if (next === baseFav(sym)) delete OVERRIDE[sym];  // 基準と一致したら上書きを解除
+  else OVERRIDE[sym] = next;
+  saveOverride();
+}
 
 /* ---------- 表示ヘルパー ---------- */
 const sign = v => v == null ? "" : (v > 0 ? "+" : "");
@@ -419,7 +442,7 @@ function card(s, rankText) {
   const v = s.valuation || {}, p = s.periods || {};
   const disp = s.symbol.endsWith(".T") ? s.symbol.slice(0, -2) : s.symbol;
   const cur = s.currency === "JPY" ? "円" : "$";
-  const faved = FAVS.has(s.symbol);
+  const faved = isFav(s.symbol);
   const badge = rankText ? `<span class="rankval">${rankText}</span>` : "";
   const per = o => `<div><em>${o.k}</em><span style="color:${col(o.v)}" class="num">${pct(o.v)}</span></div>`;
   const LINK_LABEL = { kabutan: "株探", margin: "信用", yahoo: "Yahoo", google: "Google" };
@@ -525,8 +548,8 @@ function render() {
   const s = sortedRows(base);
   if (!s) {
     // ⭐優先モード: お気に入りを上、その他を下。登録順は維持
-    const favs = base.filter(x => FAVS.has(x.symbol));
-    const rest = base.filter(x => !FAVS.has(x.symbol));
+    const favs = base.filter(x => isFav(x.symbol));
+    const rest = base.filter(x => !isFav(x.symbol));
     if (favs.length) {
       html += `<div class="divider fav">★ 優先</div>` + favs.map(x => card(x)).join("");
       html += `<div class="divider">その他</div>`;
@@ -550,9 +573,7 @@ function render() {
   }));
   // ★トグル
   list.querySelectorAll(".star").forEach(b => b.addEventListener("click", () => {
-    const sym = b.dataset.sym;
-    if (FAVS.has(sym)) FAVS.delete(sym); else FAVS.add(sym);
-    saveFavs();
+    toggleFav(b.dataset.sym);
     rememberOpen();
     render();          // お気に入りの並びを即反映
     restoreOpen();

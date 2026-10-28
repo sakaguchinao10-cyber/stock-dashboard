@@ -136,8 +136,9 @@ payload = {
     "source": "サンプルデータ（表示確認用・実データではありません）",
     "indices": [dict(entry(i["symbol"], i["name"], "INDEX", base_of(i["symbol"]), False), pin=bool(i.get("pin"))) for i in cfg["indices"]],
     # ETF は決算・PER/PBR・スコアを持たない（details=False）
-    "stocks": [entry(t["symbol"], t["name"], t["group"], base_of(t["symbol"]),
-                     details=(t["group"] != "ETF")) for t in cfg["tickers"]],
+    "stocks": [dict(entry(t["symbol"], t["name"], t["group"], base_of(t["symbol"]),
+                     details=(t["group"] != "ETF")), **({"fav": True} if t.get("fav") else {}))
+               for t in cfg["tickers"]],
     "errors": [],
 }
 (ROOT / "data.json").write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")

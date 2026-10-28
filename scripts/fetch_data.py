@@ -310,10 +310,11 @@ def main():
 
     for item in config.get("tickers", []):
         try:
-            stocks.append(
-                build_entry(item["symbol"], item["name"], item.get("group", "JP"),
+            e = build_entry(item["symbol"], item["name"], item.get("group", "JP"),
                             exchange=item.get("exchange"))
-            )
+            if item.get("fav"):
+                e["fav"] = True          # tickers.json の優先フラグ(全端末共通の既定)
+            stocks.append(e)
             print(f"OK   {item['symbol']}")
         except Exception as exc:
             errors.append(f"{item['symbol']}: {exc}")
