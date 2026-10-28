@@ -96,6 +96,33 @@ h1{font-size:18px;font-weight:700;margin:0;letter-spacing:.04em;flex:0 0 auto}
 .rsub{font-size:11px;color:var(--ink-3);font-weight:500;margin-left:5px}
 .rbtn[aria-selected="true"] .rsub{color:var(--ink-2)}
 
+/* 並び替え/絞り込みバー */
+#sortwrap{padding:0 12px 10px}
+#sortlabel{font-size:10.5px;color:var(--ink-3);font-weight:600;letter-spacing:.08em;margin:0 2px 5px;display:block}
+#sort{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+#sort::-webkit-scrollbar{display:none}
+.sbtn{
+  flex:0 0 auto;background:var(--surface);border:1px solid var(--line);color:var(--ink-2);
+  font-family:inherit;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:8px;
+  cursor:pointer;white-space:nowrap;transition:background .15s,color .15s,border-color .15s
+}
+.sbtn[aria-selected="true"]{background:var(--focus);color:#0A0E15;border-color:var(--focus)}
+.sbtn .dir{margin-left:3px;font-size:11px}
+
+/* 優先/その他の区切り */
+.divider{
+  display:flex;align-items:center;gap:8px;margin:4px 2px 2px;
+  font-size:10.5px;font-weight:700;color:var(--ink-3);letter-spacing:.1em
+}
+.divider::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.divider.fav{color:var(--focus)}
+/* ランキング値バッジ(指標ソート時) */
+.rankval{
+  display:inline-block;margin-left:7px;padding:1px 7px;border-radius:5px;
+  background:var(--surface-2);border:1px solid var(--line);
+  font-family:var(--mono);font-size:12px;font-weight:700;vertical-align:1px
+}
+
 /* ---------- カード ---------- */
 main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
 .card{
@@ -105,7 +132,16 @@ main{padding:10px 12px 40px;display:grid;gap:8px;max-width:760px;margin:0 auto}
 
 /* 行1: 銘柄と株価 */
 .r1{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.who{min-width:0}
+.who{min-width:0;display:flex;align-items:flex-start;gap:9px}
+/* お気に入り★ */
+.star{
+  flex:0 0 auto;background:none;border:0;cursor:pointer;padding:2px;margin:-2px 0 0 -2px;
+  color:var(--ink-3);line-height:1;font-size:22px;transition:color .15s,transform .1s
+}
+.star:hover{color:var(--ink-2)}
+.star:active{transform:scale(.85)}
+.star.on{color:var(--focus)}
+.whoinner{min-width:0}
 .code{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
 .etftag{
   display:inline-block;margin-left:7px;padding:1px 6px;border-radius:5px;
@@ -208,6 +244,10 @@ footer{padding:0 16px 32px;color:var(--ink-3);font-size:11.5px;line-height:1.7;t
   </div>
   <div id="idx"></div>
   <div id="tabs" role="tablist"></div>
+  <div id="sortwrap">
+    <span id="sortlabel">並び替え / 絞り込み</span>
+    <div id="sort" role="tablist" aria-label="並び替え"></div>
+  </div>
   <div id="range" role="tablist" aria-label="チャート期間"></div>
 </header>
 
@@ -221,6 +261,17 @@ footer{padding:0 16px 32px;color:var(--ink-3);font-size:11.5px;line-height:1.7;t
 "use strict";
 const $ = (s, r = document) => r.querySelector(s);
 let DATA = null, FILTER = "ALL", RANGE = "1m";
+let SORT = "fav", SORTDIR = {};  // SORT=並び替えキー, SORTDIR=変化率系の昇降(銘柄別ではなくキー別)
+
+/* お気に入り(localStorage・端末ごと)。読み書きは必ずtry/catchで保護 */
+function loadFavs() {
+  try { return new Set(JSON.parse(localStorage.getItem("fav_symbols") || "[]")); }
+  catch (e) { return new Set(); }
+}
+function saveFavs() {
+  try { localStorage.setItem("fav_symbols", JSON.stringify([...FAVS])); } catch (e) {}
+}
+let FAVS = loadFavs();
 
 /* ---------- 表示ヘルパー ---------- */
 const sign = v => v == null ? "" : (v > 0 ? "+" : "");
@@ -364,10 +415,12 @@ function finTable(f, currency) {
 }
 
 /* ---------- カード描画 ---------- */
-function card(s) {
+function card(s, rankText) {
   const v = s.valuation || {}, p = s.periods || {};
   const disp = s.symbol.endsWith(".T") ? s.symbol.slice(0, -2) : s.symbol;
   const cur = s.currency === "JPY" ? "円" : "$";
+  const faved = FAVS.has(s.symbol);
+  const badge = rankText ? `<span class="rankval">${rankText}</span>` : "";
   const per = o => `<div><em>${o.k}</em><span style="color:${col(o.v)}" class="num">${pct(o.v)}</span></div>`;
   const LINK_LABEL = { kabutan: "株探", margin: "信用", yahoo: "Yahoo", google: "Google" };
   const links = Object.entries(s.links || {}).map(([k, u]) =>
@@ -396,11 +449,15 @@ function card(s) {
       ${s.scoring?.reasons?.length ? `<div class="why">スコア内訳: ${s.scoring.reasons.join(" / ")}</div>` : ""}
     </div>` : "";
 
-  return `<article class="card" data-group="${s.group}">
+  return `<article class="card" data-group="${s.group}" data-sym="${s.symbol}">
     <div class="r1">
       <div class="who">
-        <div class="code">${disp}${tag}</div>
-        <div class="name">${s.name}</div>
+        <button class="star${faved ? " on" : ""}" data-sym="${s.symbol}" type="button"
+                aria-label="${faved ? "優先を解除" : "優先に追加"}" aria-pressed="${faved}">${faved ? "★" : "☆"}</button>
+        <div class="whoinner">
+          <div class="code">${disp}${tag}${badge}</div>
+          <div class="name">${s.name}</div>
+        </div>
       </div>
       <div class="px">
         <div class="p num">${money(s.price, s.currency)}<span style="font-size:11px;color:var(--ink-3)"> ${cur}</span></div>
@@ -422,17 +479,83 @@ function card(s) {
   </article>`;
 }
 
+/* 週次: periods.1w が無い古いdata.jsonでも last5 の合計で近似 */
+function weekChg(s) {
+  if (s.periods && s.periods["1w"] != null) return s.periods["1w"];
+  if (!s.last5) return null;
+  const vals = s.last5.map(d => d.pct).filter(v => v != null);
+  return vals.length ? vals.reduce((a, b) => a + b, 0) : null;
+}
+
+/* 並び替えキーの定義。chg=変化率系(方向トグル可)、asc/descは固定方向 */
+const SORT_KEYS = [
+  { k: "fav",   label: "⭐優先" },
+  { k: "d",     label: "日次", chg: true,  metric: s => s.changePct,            fmt: pct },
+  { k: "w",     label: "週次", chg: true,  metric: s => weekChg(s),             fmt: pct },
+  { k: "m",     label: "月次", chg: true,  metric: s => s.periods?.["1m"],      fmt: pct },
+  { k: "per",   label: "PER",  asc: true,  metric: s => s.valuation?.per,       fmt: v => v.toFixed(1) },
+  { k: "pbr",   label: "PBR",  asc: true,  metric: s => s.valuation?.pbr,       fmt: v => v.toFixed(2) },
+  { k: "yield", label: "配当", asc: false, metric: s => s.valuation?.dividendYield, fmt: v => v.toFixed(2) + "%" },
+];
+
+function sortedRows(rows) {
+  const cfg = SORT_KEYS.find(x => x.k === SORT) || SORT_KEYS[0];
+  if (cfg.k === "fav") return null; // favは別処理(優先/その他で分割)
+  const dir = cfg.chg ? (SORTDIR[SORT] || "desc") : (cfg.asc ? "asc" : "desc");
+  const out = [...rows].sort((a, b) => {
+    const va = cfg.metric(a), vb = cfg.metric(b);
+    const na = va == null, nb = vb == null;
+    if (na && nb) return 0;
+    if (na) return 1;           // 値なしは末尾
+    if (nb) return -1;
+    return dir === "asc" ? va - vb : vb - va;
+  });
+  return { cfg, rows: out };
+}
+
 function render() {
   const list = $("#list");
-  const rows = DATA.stocks.filter(s => FILTER === "ALL" || s.group === FILTER);
-  list.innerHTML = rows.length
-    ? rows.map(card).join("")
-    : `<div class="state">この区分に銘柄がありません。<br><code>tickers.json</code> に追加してください。</div>`;
+  const base = DATA.stocks.filter(s => FILTER === "ALL" || s.group === FILTER);
+  if (!base.length) {
+    list.innerHTML = `<div class="state">この区分に銘柄がありません。<br><code>tickers.json</code> に追加してください。</div>`;
+    return;
+  }
+
+  let html = "";
+  const s = sortedRows(base);
+  if (!s) {
+    // ⭐優先モード: お気に入りを上、その他を下。登録順は維持
+    const favs = base.filter(x => FAVS.has(x.symbol));
+    const rest = base.filter(x => !FAVS.has(x.symbol));
+    if (favs.length) {
+      html += `<div class="divider fav">★ 優先</div>` + favs.map(x => card(x)).join("");
+      html += `<div class="divider">その他</div>`;
+    }
+    html += rest.map(x => card(x)).join("");
+  } else {
+    // 指標ソート: 各カードにランキング値バッジを付ける
+    html = s.rows.map(x => {
+      const v = s.cfg.metric(x);
+      const txt = v == null ? "—" : s.cfg.fmt(v);
+      return card(x, txt);
+    }).join("");
+  }
+  list.innerHTML = html;
+
   list.querySelectorAll(".toggle").forEach(b => b.addEventListener("click", () => {
     const c = b.closest(".card"), open = c.classList.toggle("open");
     b.setAttribute("aria-expanded", String(open));
     b.textContent = open ? "閉じる" : "詳細";
     rememberOpen();
+  }));
+  // ★トグル
+  list.querySelectorAll(".star").forEach(b => b.addEventListener("click", () => {
+    const sym = b.dataset.sym;
+    if (FAVS.has(sym)) FAVS.delete(sym); else FAVS.add(sym);
+    saveFavs();
+    rememberOpen();
+    render();          // お気に入りの並びを即反映
+    restoreOpen();
   }));
 }
 
@@ -470,18 +593,46 @@ function renderChrome() {
     render();  // チャートだけ描き直す（展開状態は保持したいので下で復元）
     restoreOpen();
   }));
+
+  renderSort();
+}
+
+function renderSort() {
+  const dirMark = k => {
+    const cfg = SORT_KEYS.find(x => x.k === k);
+    if (!cfg || !cfg.chg || SORT !== k) return "";
+    return (SORTDIR[k] || "desc") === "desc"
+      ? `<span class="dir">↑値上がり</span>` : `<span class="dir">↓値下がり</span>`;
+  };
+  $("#sort").innerHTML = SORT_KEYS.map(c =>
+    `<button class="sbtn" role="tab" data-k="${c.k}" aria-selected="${c.k === SORT}">${c.label}${dirMark(c.k)}</button>`
+  ).join("");
+  $("#sort").querySelectorAll(".sbtn").forEach(btn => btn.addEventListener("click", () => {
+    const k = btn.dataset.k;
+    const cfg = SORT_KEYS.find(x => x.k === k);
+    if (SORT === k && cfg.chg) {
+      // 同じ変化率キーを再タップ → 値上がり順/値下がり順を切替
+      SORTDIR[k] = (SORTDIR[k] || "desc") === "desc" ? "asc" : "desc";
+    } else {
+      SORT = k;
+    }
+    rememberOpen();
+    renderSort();
+    render();
+    restoreOpen();
+  }));
 }
 
 // render() 後に、開いていたカードの展開状態を復元する
 let OPENED = new Set();
 function rememberOpen() {
   OPENED = new Set([...document.querySelectorAll(".card.open")]
-    .map(c => c.querySelector(".code")?.textContent));
+    .map(c => c.dataset.sym));
 }
 function restoreOpen() {
   if (!OPENED.size) return;
   document.querySelectorAll(".card").forEach(c => {
-    if (OPENED.has(c.querySelector(".code")?.textContent)) {
+    if (OPENED.has(c.dataset.sym)) {
       c.classList.add("open");
       const b = c.querySelector(".toggle");
       if (b) { b.setAttribute("aria-expanded", "true"); b.textContent = "閉じる"; }

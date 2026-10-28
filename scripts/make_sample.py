@@ -60,6 +60,7 @@ def entry(sym, name, group, base, details=True):
             "ohlc2w": bars(opens, highs, lows, closes, dates, 10),
         },
         "periods": {
+            "1w": round((closes[-1] / closes[-6] - 1) * 100, 2),
             "1m": round((closes[-1] / closes[-22] - 1) * 100, 2),
             "3m": round((closes[-1] / closes[-64] - 1) * 100, 2),
             "6m": round((closes[-1] / closes[0] - 1) * 100, 2),

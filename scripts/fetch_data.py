@@ -274,6 +274,7 @@ def build_entry(symbol, name, group, with_details=True, exchange=None):
             "ohlc2w": ohlc_bars(opens, highs, lows, closes, dates, 10),
         },
         "periods": {
+            "1w": period_change(closes, 5),
             "1m": period_change(closes, 21),
             "3m": period_change(closes, 63),
             "6m": period_change(closes, len(closes) - 1),
