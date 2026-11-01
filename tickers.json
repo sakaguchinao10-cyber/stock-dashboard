@@ -27,6 +27,8 @@
     { "symbol": "3003.T", "name": "ヒューリック",           "group": "JP" },
     { "symbol": "8439.T", "name": "東京センチュリー",       "group": "JP" },
     { "symbol": "8593.T", "name": "三菱HCキャピタル",       "group": "JP" },
+    { "symbol": "4318.T", "name": "クイック",               "group": "JP" },
+    { "symbol": "1786.T", "name": "オリエンタル白石",       "group": "JP" },
     { "symbol": "1605.T", "name": "INPEX",                 "group": "JP" },
     { "symbol": "2579.T", "name": "コカ・コーラBJH",         "group": "JP" },
 
