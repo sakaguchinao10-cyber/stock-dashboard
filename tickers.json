@@ -43,6 +43,7 @@
     { "symbol": "IONQ",  "name": "IonQ",                   "group": "US", "exchange": "NYSE" },
     { "symbol": "KO",    "name": "Coca-Cola",              "group": "US", "exchange": "NYSE" },
     { "symbol": "META",  "name": "Meta Platforms",         "group": "US", "exchange": "NASDAQ" },
+    { "symbol": "NET",   "name": "Cloudflare",             "group": "US", "exchange": "NYSE" },
 
     { "symbol": "SPHY",  "name": "SPDRハイイールド債ETF",  "group": "ETF", "exchange": "NYSEARCA" },
     { "symbol": "SPYD",  "name": "SPDR S&P500高配当ETF",   "group": "ETF", "exchange": "NYSEARCA" },
