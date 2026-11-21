@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-21T12:01:08+09:00",
+ "updatedAt": "2026-11-21T12:14:36+09:00",
  "source": "Yahoo Finance (yfinance)",
  "indices": [
   {
@@ -4978,7 +4978,7 @@
     "google": "https://www.google.com/finance/quote/2432:TYO?hl=ja"
    },
    "valuation": {
-    "per": 7.62,
+    "per": 7.38,
     "pbr": 1.05,
     "dividendYield": 2.5
    },
@@ -13358,7 +13358,7 @@
     "google": "https://www.google.com/finance/quote/8439:TYO?hl=ja"
    },
    "valuation": {
-    "per": 14.83,
+    "per": 14.34,
     "pbr": 1.01,
     "dividendYield": 3.65
    },
@@ -16886,7 +16886,7 @@
     "google": "https://www.google.com/finance/quote/2579:TYO?hl=ja"
    },
    "valuation": {
-    "per": 42.31,
+    "per": 41.05,
     "pbr": 1.88,
     "dividendYield": 1.51
    },
