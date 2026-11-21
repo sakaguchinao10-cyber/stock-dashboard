@@ -32,6 +32,9 @@
     { "symbol": "8604.T", "name": "野村ホールディングス",   "group": "JP" },
     { "symbol": "1944.T", "name": "きんでん",               "group": "JP" },
     { "symbol": "7272.T", "name": "ヤマハ発動機",           "group": "JP" },
+    { "symbol": "8031.T", "name": "三井物産",               "group": "JP" },
+    { "symbol": "5706.T", "name": "三井金属鉱業",           "group": "JP" },
+    { "symbol": "6834.T", "name": "精工技研",               "group": "JP" },
     { "symbol": "1605.T", "name": "INPEX",                 "group": "JP" },
     { "symbol": "2579.T", "name": "コカ・コーラBJH",         "group": "JP" },
 
